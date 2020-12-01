@@ -30,7 +30,7 @@
             <p id="lozinka">PONOVI LOZINKU</p>
             <input type="password" class="form-control" />
           </div>
-          <router-link to="/Signup" tag="button" class="registracija"
+          <router-link to="/Signup" tag="button" class="Singup_registracija"
             >Registriraj se!</router-link
           >
         </form>
@@ -39,11 +39,15 @@
   </body>
 </template>
 
-<style>
+<script>
+export default {};
+</script>
+
+<style lang="scss">
 .form-control {
   height: 63px;
 }
-.registracija {
+.Singup_registracija {
   background: #0099ff 0 0;
   border-color: #0099ff;
   color: #ffffff;
