@@ -3,39 +3,35 @@
     <div class="login-form">
       <div class="main-div">
         <div class="panel">
-          <h2>Prijava</h2>
+          <h2>Registracija</h2>
         </div>
         <form id="Login">
           <div class="form-group">
-            <p id="email">E-MAIL</p>
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              placeholder="dsada@gmail.com"
-            />
+            <p id="ime">IME</p>
+            <input type="text" class="form-control" />
           </div>
-
+          <div class="form-group">
+            <p id="surname">PREZIME</p>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <p id="datum">DATUM ROĐENJA</p>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <p id="email">E-MAIL</p>
+            <input type="email" class="form-control" />
+          </div>
           <div class="form-group">
             <p id="lozinka">LOZINKA</p>
-            <input
-              type="password"
-              class="form-control"
-              id="inputPassword"
-              placeholder="1234"
-            />
+            <input type="password" class="form-control" />
           </div>
-          <div class="forgot">
-            <a href="reset.html">Zaboravljena lozinka?</a>
-          </div>
-          <div class="nemas">
-            <strong> Nemaš naš račun </strong>
+          <div class="form-group">
+            <p id="lozinka">PONOVI LOZINKU</p>
+            <input type="password" class="form-control" />
           </div>
           <router-link to="/Signup" tag="button" class="registracija"
             >Registriraj se!</router-link
-          >
-          <router-link to="/Login" tag="button" class="prijava"
-            >Prijavi se!</router-link
           >
         </form>
       </div>
@@ -44,18 +40,10 @@
 </template>
 
 <style>
-.registracija {
-  background: limegreen !important;
-  border-color: limegreen !important;
-  color: black;
-  font-size: 20px;
-  width: 65%;
-  height: 60px;
-  line-height: 50px;
-  padding: 0;
-  border-radius: 10px;
+.form-control {
+  height: 63px;
 }
-.prijava {
+.registracija {
   background: #0099ff 0 0;
   border-color: #0099ff;
   color: #ffffff;
@@ -64,7 +52,6 @@
   height: 60px;
   line-height: 50px;
   padding: 0px;
-  margin-top: 5px;
   border-radius: 10px;
 }
 
@@ -81,8 +68,23 @@
   margin: 0%;
   font-style: italic;
 }
-#racun {
+#ime {
+  text-align: left;
+  color: #444444;
   margin: 0%;
+  font-style: italic;
+}
+#surname {
+  text-align: left;
+  color: #444444;
+  margin: 0%;
+  font-style: italic;
+}
+#datum {
+  text-align: left;
+  color: #444444;
+  margin: 0%;
+  font-style: italic;
 }
 .form-heading {
   color: silver;
@@ -106,7 +108,7 @@
 .main-div {
   background: silver 0 0;
   border-radius: 10px;
-  margin: 0px auto 30px;
+  margin: 20px auto 30px;
   max-width: 70%;
   padding: 50px 70px 70px 70px;
 }
@@ -132,9 +134,7 @@
   font-size: 14px;
   margin: auto;
 }
-.login-form .btn.btn-primary.reset {
-  background: #ff9900 none repeat scroll 0 0;
-}
+
 .back {
   text-align: left;
   margin-top: 10px;
