@@ -1,47 +1,98 @@
 <template>
   <div class="container">
-    <img src="@/assets/fitness.jpg" alt="Fitness" style="width:100%;" />
-    <router-link to="Home" tag="button" type=" submit" class="skola"
-      >Škola prehrane</router-link
-    >
-    <router-link to="Home" tag="button" type=" submit" class="skola"
-      >Prehrambeni status</router-link
-    >
-    <router-link to="Home" tag="button" type=" submit" class="skola"
-      >Calorie counter</router-link
-    >
-    <div class="slogan">Budi fit i hrani se zdravo</div>
+    <div class="jumbotron p-4 p-md-5  rounded ">
+      <img
+        src="@/assets/fitnes.jpg"
+        id="slika"
+        width="1110"
+        height="300"
+        alt="fitnes"
+      />
+    </div>
+
+    <div id="jumbo" class="jumbotron p-4 p-md-5  rounded ">
+      <div class="row mb-2">
+        <div class="col">
+          <div class="card" style="width:18rem;background-color:#6B5151; ">
+            <router-link
+              to="Home"
+              tag="onclick"
+              type=" submit"
+              class="skola"
+              style="margin-top:20px;"
+              >Škola prehrane</router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width:18rem; background-color:#6B5151; ">
+            <router-link
+              to="Home"
+              tag="onclick"
+              type=" submit"
+              class="prehrana"
+              style="margin-top:20px;"
+              >Prehrambeni status</router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width:18rem; background-color:#6B5151; ">
+            <router-link
+              to="Home"
+              tag="onclick"
+              type="submit"
+              class="calorie"
+              style="margin-top:20px;"
+              >Calorie counter</router-link
+            >
+          </div>
+        </div>
+        <div class="top-right">
+          <router-link :to="{ name: 'Login' }"> <p>Odjava</p></router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+<script>
+document.getElementById("");
+</script>
+
 <style>
-.container {
-  position: relative;
+.top-right {
+  position: absolute;
+  top: 6px;
+  right: 190px;
+  color: #0791fb;
+}
+#slika {
+  margin-top: -48px;
+  margin-left: -48px;
+}
+.card {
+  margin-top: -35%;
+  height: 120px;
+  vertical-align: center;
+}
+#jumbo {
+  margin: 0%;
+  background-color: #00789e;
+  font-family: "Tw Cen MT";
+  font-weight: bold;
+  white-space: nowrap;
   text-align: center;
-  color: white;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 1);
 }
-
-.slogan {
-  position: absolute;
-  top: 40px;
-  right: 100px;
-  font-size: 30px;
-}
-.container .skola {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.container .skola:hover {
-  background-color: black;
+.jumbotron {
+  margin-bottom: 0%;
+  margin-top: 30px;
+  height: 300px;
+  box-sizing: border-box;
+  max-width: 1140px;
+  background-color: white;
 }
 </style>

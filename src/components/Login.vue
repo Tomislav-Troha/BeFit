@@ -1,9 +1,11 @@
 <template>
   <div class="container">
     <div class="card card-container">
+      
       <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
       <p id="prijava">Prijava</p>
       <p id="profile-name" class="profile-name-card"></p>
+      
       <form class="form-signin" id="forma_login">
         <p id="emailLogin">E-MAIL</p>
         <span id="reauth-email" class="reauth-email"></span>
@@ -155,6 +157,7 @@ html {
   transform: matrix(1, 0, 0, 1, 0, 0);
   border-radius: 10px;
   background-color: #c4c4c4;
+  margin-top: 50px;
 }
 
 .btn {

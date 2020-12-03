@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav id="nav" class="navbar navbar-expand-md navbar-light">
+    <nav id="nav" class="nav d-flex justify-content-between">
       <router-link :to="{ name: 'Login' }" class="navbar-brand">
         <img src="@/assets/gym-logo.png" width="200" height="120" alt="logo" />
         <a id="befit">Befit</a>
@@ -37,6 +37,8 @@ export default {
 
 #nav {
   background-color: #c4c4c4 !important;
+  margin: 0px 175px;
+  padding: 0px 15px;
 }
 
 #befit {
@@ -46,6 +48,6 @@ export default {
   font-size: 82px;
   color: #000000 !important;
   position: absolute;
-  left: 230px;
+  left: 370px;
 }
 </style>
