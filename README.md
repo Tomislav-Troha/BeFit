@@ -10,6 +10,8 @@ Matej Omazić, programer
 
 Saša Mamula, programer
 
+Tomislav Troha, voditelj i programer
+
 ### Fakultete informatike u Puli (https://fipu.unipu.hr/)
 
 ### Programsko inžinjerstvo (http://ntankovic.unipu.hr/)
