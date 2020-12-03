@@ -8,8 +8,9 @@ Robert Pauković
 
 Dokumentacija 
 
+Matej Omazić
 
-
+Programer
 
 
 ### Fakultete informatike u Puli (https://fipu.unipu.hr/)
