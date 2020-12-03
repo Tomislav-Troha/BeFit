@@ -1,33 +1,30 @@
 <template>
-  <body id="LoginForm">
-    <div class="login-form">
+  <body id="SignupForm">
+    <div class="Signup-form">
       <div class="main-div">
-        <div class="panel">
-          <h2>Registracija</h2>
-        </div>
         <form id="Login">
           <div class="form-group">
             <p id="ime">IME</p>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group">
-            <p id="surname">PREZIME</p>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group">
-            <p id="datum">DATUM ROĐENJA</p>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group">
-            <p id="email">E-MAIL</p>
             <input type="email" class="form-control" />
           </div>
           <div class="form-group">
-            <p id="lozinka">LOZINKA</p>
+            <p id="surname">PREZIME</p>
+            <input type="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <p id="datum">DATUM ROĐENJA</p>
+            <input type="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <p id="email_signup">E-MAIL</p>
+            <input type="email" class="form-control" />
+          </div>
+          <div class="form-group">
+            <p id="lozinka_signup">LOZINKA</p>
             <input type="password" class="form-control" />
           </div>
           <div class="form-group">
-            <p id="lozinka">PONOVI LOZINKU</p>
+            <p id="lozinka_signup">PONOVI LOZINKU</p>
             <input type="password" class="form-control" />
           </div>
           <router-link to="/Signup" tag="button" class="Singup_registracija"
@@ -44,8 +41,12 @@ export default {};
 </script>
 
 <style lang="scss">
+
 .form-control {
   height: 63px;
+  width: 512px;
+  display: inline-table;
+  
 }
 .Singup_registracija {
   background: #0099ff 0 0;
@@ -59,19 +60,6 @@ export default {};
   border-radius: 10px;
 }
 
-#email {
-  text-align: left;
-  color: #444444;
-  margin: 0%;
-  font-style: italic;
-}
-
-#lozinka {
-  text-align: left;
-  color: #444444;
-  margin: 0%;
-  font-style: italic;
-}
 #ime {
   text-align: left;
   color: #444444;
@@ -90,6 +78,22 @@ export default {};
   margin: 0%;
   font-style: italic;
 }
+
+#email {
+  text-align: left;
+  color: #444444;
+  margin: 0%;
+  font-style: italic;
+}
+
+#lozinka {
+  text-align: left;
+  color: #444444;
+  margin: 0%;
+  font-style: italic;
+}
+
+
 .form-heading {
   color: silver;
   font-size: 23px;
@@ -110,17 +114,29 @@ export default {};
   line-height: 24px;
 }
 .main-div {
-  background: silver 0 0;
-  border-radius: 10px;
-  margin: 20px auto 30px;
-  max-width: 70%;
-  padding: 50px 70px 70px 70px;
+    position: fixed;
+		overflow: visible;
+    fill: rgba(201,201,201,1);
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.839));
+		overflow: visible;
+		width: 692px;
+		height: 674px;
+    top:200px;
+    left: 34%;
+    background-color: #C9C9C9;
 }
 
-.login-form .form-group {
+.forma_signup,
+#lozinka,
+#email{
+  padding-left:100px;
+}
+
+
+.Signup-form .form-group {
   margin-bottom: 10px;
 }
-.login-form {
+.Signup-form {
   text-align: center;
 }
 .forgot a {

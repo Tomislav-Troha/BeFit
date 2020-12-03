@@ -4,8 +4,8 @@
       <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
       <p id="prijava">Prijava</p>
       <p id="profile-name" class="profile-name-card"></p>
-      <form class="form-signin">
-        <p id="email">E-MAIL</p>
+      <form class="form-signin" id= "forma_login">
+        <p id="emailLogin">E-MAIL</p>
         <span id="reauth-email" class="reauth-email"></span>
         <input
           type="email"
@@ -14,18 +14,18 @@
           required
           autofocus
         />
-        <p id="lozinka">LOZINKA</p>
+        <p id="lozinkaLogin">LOZINKA</p>
         <input
           type="password"
           id="inputPassword"
           class="form-control"
-          required
-        />
-        <p id="no_account">Nemaš naš račun?</p>
-        <router-link to="/Signup" tag="button" class="registracija"
+          required/>
+
+        <div class= "noacc"><strong id="no_account">Nemaš naš račun?</strong></div>
+        <router-link to="/Signup" tag="button" type="submit" class="registracija"
           >Registriraj se!</router-link
         >
-        <router-link to="/Signup" tag="button" class="prijava"
+        <router-link to="#" tag="button" type=" submit" class="prijava"
           >Prijavi se!</router-link
         >
       </form>
@@ -35,55 +35,108 @@
   <!-- /container -->
 </template>
 
+<script>
+export default {
+  name: "FormComponent",
+
+  data() {
+    return {
+      form: {
+        inputEmail: "",
+        inputPassword: ""
+      }
+    };
+  },
+
+  validations: {
+    form: {
+      inputEmail: { required },
+      inputPassword: { required, inputEmail }
+    }
+  }
+};
+</script>
+
+
 <style>
-#no_account {
-  margin-bottom: 0%;
-}
+
+
 .registracija {
-  background: #0099ff 0 0;
-  border-color: #0099ff;
-  color: #ffffff;
-  font-size: 20px;
-  width: 65%;
-  height: 60px;
-  line-height: 50px;
-  padding: 0px;
-  border-radius: 10px;
-  margin-top: 0%;
+  fill: rgba(0,216,65,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+    position: absolute;
+		overflow: visible;
+		width: 225px;
+		height: 78px;
+    background-color: #00D841;
+    border:none;
+    border-radius:22px;
+    font-size: 25px;
+    
 }
 .prijava {
-  background: green 0 0;
-  border-color: green;
-  color: #ffffff;
-  font-size: 20px;
-  width: 65%;
-  height: 60px;
-  line-height: 50px;
-  padding: 0px;
-  border-radius: 10px;
+  stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+    position: absolute;
+		overflow: visible;
+		width: 225px;
+		height: 78px;
+    background-color: #00B0DE;
+    border:none;
+    border-radius:22px;
+    font-size: 25px;
+   
 }
 #prijava {
   font-family: "Segoe UI";
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 50px;
+  color: rgba(0,0,0,1);
+}
+#emailLogin {
+  font-family: "Segoe UI";
+  text-align: left;
+  color: #444444;
+  font-style: italic;
+  font-weight: bold;
+  
+}
+#lozinkaLogin {
+  font-family: "Segoe UI";
+  color: #444444;
+  margin: 0%;
+  font-style: italic;
+  font-weight: bold;
+  padding-right: 30px;
+}
+
+.forma_login,
+#lozinkaLogin,
+#emailLogin{
+  padding-left:100px;
+}
+
+.noacc,
+#no_account {
+  margin-top:150px;
   font-size: 20px;
-  font-style: italic;
-  font-weight: bold;
+  color: black;
 }
-#email {
-  font-family: "Segoe UI";
-  text-align: left;
-  color: #444444;
-  margin: 0%;
-  font-style: italic;
-  font-weight: bold;
-}
-#lozinka {
-  font-family: "Segoe UI";
-  text-align: left;
-  color: #444444;
-  margin: 0%;
-  font-style: italic;
-  font-weight: bold;
-}
+
+
 body,
 html {
   height: 100%;
@@ -92,7 +145,15 @@ html {
 }
 
 .card-container.card {
-  max-width: 350px;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  position: fixed;
+  overflow: visible;
+  width: 662px;
+  height: 724px;
+  left: 34%;
+  transform: matrix(1,0,0,1,0,0);
+  border-radius: 10px;
+  background-color: #C4C4C4;
 }
 
 .btn {
@@ -143,16 +204,23 @@ html {
 
 .form-signin #inputEmail,
 .form-signin #inputPassword {
-  direction: ltr;
-  height: 44px;
-  font-size: 16px;
+  fill: rgba(255,255,255,1);
+	overflow: visible;
+	width: 423px;
+  height: 89px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  border:none;
+  left: 100px;
+  
 }
 
 .form-signin input[type="email"],
 .form-signin input[type="password"],
 .form-signin input[type="text"],
 .form-signin button {
-  width: 100%;
+  width: 225px;
+  height: 78px;
   display: block;
   margin-bottom: 10px;
   z-index: 1;
@@ -160,6 +228,7 @@ html {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  left: 200px;
 }
 
 .form-signin .form-control:focus {
