@@ -2,20 +2,18 @@
   <div id="app">
     <nav id="nav" class="navbar navbar-expand-md navbar-light">
       <router-link :to="{ name: 'Login' }" class="navbar-brand">
-        <img src="@/assets/gym-logo.png" width="200" height="120" alt="" />
+        <img src="@/assets/gym-logo.png" width="200" height="120" alt="logo" />
         <a id="befit">Befit</a>
       </router-link>
     </nav>
   </div>
 </template>
 
-
 <script>
 export default {
   name: "Navbar",
 };
 </script>
-
 
 <style lang="scss">
 #app {
