@@ -21,7 +21,7 @@ Dokumentacija
 ### Kratki opis funkcionalnosti
 
  ```
- Aplikacija koja će nam daje informacije koliko moramo svakodnevno unositi kalorija i omogućiti provjeru prehrambenog statusa.
+ Aplikacija koja nam daje informacije koliko moramo svakodnevno unositi kalorija i omogućiti provjeru prehrambenog statusa.
  
  ```
  
