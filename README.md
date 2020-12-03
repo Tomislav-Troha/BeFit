@@ -4,13 +4,9 @@
 
 ### Sastav tima i zaduženja
 
-Robert Pauković   
+Robert Pauković, dokumentacija 
 
-Dokumentacija 
-
-Matej Omazić
-
-Programer
+Matej Omazić, programer
 
 
 ### Fakultete informatike u Puli (https://fipu.unipu.hr/)
