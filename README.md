@@ -8,6 +8,7 @@ Robert Pauković, dokumentacija
 
 Matej Omazić, programer
 
+Saša Mamula, programer
 
 ### Fakultete informatike u Puli (https://fipu.unipu.hr/)
 
