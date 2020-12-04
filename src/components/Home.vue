@@ -1,4 +1,4 @@
-<template>
+n<template>
   <div class="container">
     <div class="jumbotron p-4 p-md-5  rounded ">
       <img
@@ -14,50 +14,32 @@
       <div class="row mb-2">
         <div class="col">
           <div class="card" style="width:18rem;background-color:#6B5151; ">
-            <router-link
-              to="Home"
-              tag="onclick"
-              type=" submit"
-              class="skola"
-              style="margin-top:20px;"
-              >Škola prehrane</router-link
-            >
+            <router-link :to = "{name:'#' }" style="margin-top:20px; color: black;" >Škola prehrane</router-link>
           </div>
         </div>
         <div class="col">
           <div class="card" style="width:18rem; background-color:#6B5151; ">
-            <router-link
-              to="Home"
-              tag="onclick"
-              type=" submit"
-              class="prehrana"
-              style="margin-top:20px;"
-              >Prehrambeni status</router-link
-            >
+            <router-link :to = "{name:'#' }"   style="margin-top:20px; color: black;">Prehrambeni status</router-link>
           </div>
         </div>
         <div class="col">
-          <div class="card" style="width:18rem; background-color:#6B5151; ">
-            <router-link
-              to="Home"
-              tag="onclick"
-              type="submit"
-              class="calorie"
-              style="margin-top:20px;"
-              >Calorie counter</router-link
-            >
+          <div class="card" style="width:18rem; background-color:#6B5151;">
+            <router-link :to = "{ name:'#' }" style="margin-top:20px; color: black;">Calorie counter</router-link>
           </div>
         </div>
         <div class="top-right">
-          <router-link :to="{ name: 'Login' }"> <p>Odjava</p></router-link>
+          <router-link :to="{ name: 'Login' }"><p>Odjava</p></router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+
 <script>
-document.getElementById("");
+export default {};
 </script>
+
 
 <style>
 .top-right {
