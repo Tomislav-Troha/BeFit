@@ -2,20 +2,20 @@
     <form @submit.prevent="loginKorisnik" class="container">
         
   <div class="form-group_sign">
-    <label id="slova_signup" for="email-adresa">Ime: </label>
-    <input type="email" class="form-control" id="email-adresa" aria-describedby="emailHelp" placeholder="Unesite email" v-model="email">
+    <label id="slova_signup" for="ime">Ime: </label>
+    <input type="email" class="form-control" id="email-adresa" aria-describedby="emailHelp" placeholder="Unesite ime" v-model="email">
   </div>
   <div class="form-group_sign">
-    <label id="slova_signup" for="lozinka">Prezime: </label>
-    <input type="password" class="form-control" id="lozinka" placeholder="Unesite lozinku" v-model="lozinka">
+    <label id="slova_signup" for="prezime">Prezime: </label>
+    <input type="text" class="form-control" id="lozinka" placeholder="Unesite prezime" v-model="lozinka">
   </div>
   <div class="form-group_sign">
-    <label id="slova_signup" for="lozinka">Datum rođenja: </label>
-    <input type="password" class="form-control" id="lozinka" placeholder="Unesite lozinku" v-model="lozinka">
+    <label id="slova_signup" for="datum_rodenja">Datum rođenja: </label>
+    <input type="date" class="form-control" id="lozinka" placeholder="Unesite datum rodenja" v-model="lozinka">
   </div>
   <div class="form-group_sign">
-    <label id="slova_signup" for="lozinka">E-mail: </label>
-    <input type="password" class="form-control" id="lozinka" placeholder="Unesite lozinku" v-model="lozinka">
+    <label id="slova_signup" for="email">E-mail: </label>
+    <input type="email" class="form-control" id="lozinka" placeholder="Unesite E-mail" v-model="lozinka">
   </div>
   <div class="form-group_sign">
     <label id="slova_signup" for="lozinka">Lozinka: </label>

@@ -1,38 +1,33 @@
-n<template>
-  <div class="container">
-    <div class="jumbotron p-4 p-md-5  rounded ">
-      <img
-        src="@/assets/fitnes.jpg"
-        id="slika"
-        width="1110"
-        height="300"
-        alt="fitnes"
-      />
-    </div>
+<template>
+<div>
 
-    <div id="jumbo" class="jumbotron p-4 p-md-5  rounded ">
-      <div class="row mb-2">
-        <div class="col">
-          <div class="card" style="width:18rem;background-color:#6B5151; ">
-            <router-link :to = "{name:'#' }" style="margin-top:20px; color: black;" >Škola prehrane</router-link>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width:18rem; background-color:#6B5151; ">
-            <router-link :to = "{name:'#' }"   style="margin-top:20px; color: black;">Prehrambeni status</router-link>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card" style="width:18rem; background-color:#6B5151;">
-            <router-link :to = "{ name:'#' }" style="margin-top:20px; color: black;">Calorie counter</router-link>
-          </div>
-        </div>
-        <div class="top-right">
-          <router-link :to="{ name: 'Login' }"><p>Odjava</p></router-link>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="budi_fit">
+
+  <b-jumbotron header="BootstrapVue" lead="Bootstrap v4 Components for Vue.js 2">
+    <p>For more information visit website</p>
+    <b-button variant="primary" href="#">More Info</b-button>
+  </b-jumbotron>
+
+</div>
+
+<div class="smedi_buton">
+
+<b-container class="bv-example-row bv-example-row-flex-cols">
+  
+<b-row align-v="stretch">
+    <b-col>One of three columns</b-col>
+    <b-col>One of three columns</b-col>
+    <b-col>One of three columns</b-col>
+  </b-row>
+
+</b-container>
+
+</div>
+
+
+</div>
+
+
 </template>
 
 
@@ -41,40 +36,10 @@ export default {};
 </script>
 
 
-<style>
-.top-right {
-  position: absolute;
-  top: 6px;
-  right: 190px;
-  color: #0791fb;
-}
-#slika {
-  margin-top: -48px;
-  margin-left: -48px;
-}
-.card {
-  margin-top: -35%;
-  height: 120px;
-  vertical-align: center;
-}
-#jumbo {
-  margin: 0%;
-  background-color: #00789e;
-  font-family: "Tw Cen MT";
-  font-weight: bold;
-  white-space: nowrap;
-  text-align: center;
-  font-style: normal;
-  font-weight: lighter;
-  font-size: 25px;
-  color: rgba(0, 0, 0, 1);
-}
-.jumbotron {
-  margin-bottom: 0%;
-  margin-top: 30px;
-  height: 300px;
-  box-sizing: border-box;
-  max-width: 1140px;
-  background-color: white;
+<style scoped lang="scss">
+  
+#smedi_buton{
+    height: 250px;
+    
 }
 </style>
