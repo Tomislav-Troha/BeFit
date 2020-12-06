@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Prijava/Login'
 import Signup from '@/components/Prijava/Signup'
 import Home from '@/components/Home'
+import Skola_prehrane from '@/components/Skola_prehrane'
 
 
 
@@ -36,7 +37,12 @@ const router = new Router ({
     name: 'Home',
     component: Home
   },
-
+  {
+    path: '/skola_prehrane',
+    name: 'Skola_prehrane',
+    component: Skola_prehrane
+  },
+ 
 ]
 })
 
