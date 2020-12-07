@@ -24,7 +24,8 @@
       <b-card class="text-center" style="max-width:550px;" align="center" >
         
         
-        <b-card-text style="font-size:25px">Škola prehrane</b-card-text>
+        <b-card-text><router-link  to="Skola_prehrane" style="font-size:25px;color:black;">Škola prehrane</router-link></b-card-text>
+         
         
        
         </b-card>

@@ -1,6 +1,6 @@
 <template>
-  <div id="navbar">
-  <b-navbar  >
+  <div class="mx-3" id="navbar">
+  <b-navbar>
     <b-navbar-nav>
       <b-nav-item>
       <router-link :to="{ name: 'Login' }" class="navbar-brand">
@@ -36,7 +36,7 @@ export default {
 
 
 #befit {
-  font-family: Segoe UI;
+  font-family:"Segoe UI";
   font-style: normal;
   font-weight: normal;
   font-size: 50px;
