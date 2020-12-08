@@ -1,18 +1,17 @@
 <template>
-  <div class="sticky-top">
-    <div class="budi_fit">
-      <b-jumbotron class="fitnes">
+  
+    
+     <div class="bg-secondary text-light p-5 mx-5 mt-5 rounded-lg">
         <img
           src="@/assets/befit.png"
           class="slika mx-auto d-block img-fluid unlock-icon"
-          alt="fitnes"
-        />
+          alt="fitnes"/>
+
         <b-card-group
           deck
-          class="mx-auto mr-4"
-          style="  display: flex;
-  justify-content: center;"
-        >
+          class="mx-auto mr-4 mt-4"
+          style="display: flex;justify-content: center;">
+
           <b-card class="text-center " style="max-width:550px;" align="center">
             <b-card-text
               ><router-link
@@ -31,16 +30,19 @@
             <b-card-text style="font-size:25px">Calorie counter</b-card-text>
           </b-card>
         </b-card-group>
-      </b-jumbotron>
-    </div>
-  </div>
+      </div>
+    
+
+
+    
+  
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .card-text {
   font-family: "Segoe UI";
   color: black;
@@ -50,21 +52,12 @@ export default {};
 
 .card-deck .card {
   background-color: #6b5151;
-  margin-top: 70px;
+  margin-top: 75px;
 }
 
-.container {
-  height: 100px;
-  margin-top: -96px;
+.bg-secondary{
+  background-color:#00789E!important;
 }
 
-.budi_fit {
-  margin: 0% 5.38% 0% 5.38%;
-}
 
-.fitnes {
-  background-color: #00789e;
-  margin: 2% 1.8% 0% 1.8%;
-  height: 600px;
-}
 </style>

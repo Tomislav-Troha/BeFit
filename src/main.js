@@ -7,6 +7,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BackToTop from 'vue-backtotop'
 import Unicon from 'vue-unicons'
 import { uniArrowDown } from 'vue-unicons/src/icons'
+require("@fortawesome/fontawesome-free/css/all.min.css");
+
+
 
 Unicon.add([uniArrowDown])
 Vue.use(Unicon)

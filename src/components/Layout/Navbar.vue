@@ -9,7 +9,7 @@
               style="height: 100px;"
               alt="logo"
             />
-            <a id="befit">Befit</a></router-link
+            <a id="befit">BeFit</a></router-link
           >
         </b-nav-item>
       </b-navbar-nav>
@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped>
 #navbar {
   background-color: #c4c4c4;
   font-family: "Avenir", Helvetica, Arial, sans-serif;

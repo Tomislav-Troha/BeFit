@@ -54,9 +54,7 @@
     <p class="text-danger text-center " v-if="feedback">
       {{ feedback }}
     </p>
-    <router-link to="Home" tag="button" type=" submit" class="btn-secondary_reg"
-      >Registriraj se</router-link
-    >
+    <router-link to="Home" tag="button" type=" submit" class="btn-secondary">Registriraj se</router-link>
   </form>
 </template>
 
@@ -64,25 +62,46 @@
 export default {};
 </script>
 
-<style lang="scss">
-.btn-secondary_reg {
-  margin-top: 8px;
-  margin-left: 140px;
+<style scoped>
+
+.container {
+  max-width: 500px !important;
+  height: 500px;
+  fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+  margin-top: 80px;
+  background: #c4c4c4;
+  position: inherit;
+}
+
+.form-control {
+  width: 350px !important;
+  height: 55px !important;
+}
+
+.btn-secondary {
   stroke: rgba(112, 112, 112, 1);
   shape-rendering: auto;
   overflow: visible;
   width: 200px;
   height: 50px;
-  background-color: #00b0de;
+  background-color: #00D841;
   border: none;
   border-radius: 22px;
   font-size: 25px;
+  margin-top: 8px;
+  margin-left: 140px;
   position: relative;
   outline: none !important;
   outline-width: 0 !important;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+.btn-secondary:hover{
+  background-color:#08A538;
 }
 
 #slova_signup {
