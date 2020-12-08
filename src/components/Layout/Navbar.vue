@@ -1,18 +1,20 @@
 <template>
   <div class="mx-3" id="navbar">
-  <b-navbar>
-    <b-navbar-nav>
-      <b-nav-item>
-      <router-link :to="{ name: 'Login' }" class="navbar-brand">
-        <img src="@/assets/gym-logo.png" style="height: 100px;" alt="logo" />
-        <a id="befit">Befit</a></router-link>
+    <b-navbar>
+      <b-navbar-nav>
+        <b-nav-item>
+          <router-link :to="{ name: 'Login' }" class="navbar-brand">
+            <img
+              src="@/assets/gym-logo.png"
+              style="height: 100px;"
+              alt="logo"
+            />
+            <a id="befit">Befit</a></router-link
+          >
         </b-nav-item>
-
-      
-     
-    </b-navbar-nav>
-  </b-navbar>
-</div>
+      </b-navbar-nav>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
@@ -22,9 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-
 #navbar {
-  background-color:#c4c4c4;
+  background-color: #c4c4c4;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,11 +33,8 @@ export default {
   color: #2c3e50;
 }
 
-
-
-
 #befit {
-  font-family:"Segoe UI";
+  font-family: "Segoe UI";
   font-style: normal;
   font-weight: normal;
   font-size: 50px;

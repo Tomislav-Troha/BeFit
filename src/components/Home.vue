@@ -7,12 +7,17 @@
           class="slika mx-auto d-block img-fluid unlock-icon"
           alt="fitnes"
         />
-        <b-card-group deck class="mx-auto mr-4">
+        <b-card-group
+          deck
+          class="mx-auto mr-4"
+          style="  display: flex;
+  justify-content: center;"
+        >
           <b-card class="text-center " style="max-width:550px;" align="center">
             <b-card-text
               ><router-link
                 to="Skola_prehrane"
-                style="font-size:25px;color:black;"
+                style="font-size:25px;color:black;text-decoration: none;"
                 >Škola prehrane</router-link
               ></b-card-text
             >

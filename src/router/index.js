@@ -4,6 +4,7 @@ import Login from '@/components/Prijava/Login'
 import Signup from '@/components/Prijava/Signup'
 import Home from '@/components/Home'
 import Skola_prehrane from '@/components/Skola_prehrane'
+import Onama from '@/components/Onama'
 
 
 
@@ -42,7 +43,11 @@ const router = new Router ({
     name: 'Skola_prehrane',
     component: Skola_prehrane
   },
- 
+  {
+    path: '/onama',
+    name: 'Onama',
+    component: Onama
+  }
 ]
 })
 
