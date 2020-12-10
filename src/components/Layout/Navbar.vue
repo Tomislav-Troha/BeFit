@@ -7,11 +7,10 @@
             <img
               src="@/assets/gym-logo.png"
               style="height: 100px;"
-              alt="logo"
-            />
-            <a id="befit">BeFit</a></router-link
-          >
+              alt="logo"/>
+            <a id="befit">BeFit</a></router-link>
         </b-nav-item>
+        <b-nav-item nav-link right @click="odjava" v-if="user">Odjava</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -20,6 +19,19 @@
 <script>
 export default {
   name: "Navbar",
+  data(){
+        return{
+          user: null,
+          logiran:{}
+           }
+     },
+     methods: {
+        odjava(){
+          firebase.auth().signOut().then(() => {
+              this.$router.push({ name: 'Login' })
+          })  
+        },
+},
 };
 </script>
 

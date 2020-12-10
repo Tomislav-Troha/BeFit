@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <Navbar />
+    <vue-page-transition name="fade">
+  <router-view/>
+</vue-page-transition>
+        
     
-    
-    <router-view />
     <Footer />
+    
     
   </div>
 </template>
@@ -20,4 +23,8 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>
 

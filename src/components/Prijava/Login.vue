@@ -20,18 +20,24 @@
         id="lozinka"
         placeholder="Unesite lozinku"
         v-model="lozinka"/>
+        <p class="text-danger text-center" v-if="feedback">{{ feedback }}</p>
     </div>
-
+ 
 <div class="sale text-center mt-5">
     <p class="noacc">Nemaš naš račun?</p>
-    <p class="text-danger" v-if="feedback">{{ feedback }}</p>
+    
+      
     <router-link to="Signup" tag="button" type=" submit" class="btn-primary mb-1 ">Registriraj se</router-link>
-    <p class="text-danger" v-if="feedback">{{ feedback }}</p>
-    <router-link to="Home" tag="button" type=" submit" class="btn-secondary  ">Prijavi se</router-link>
+    
+    <button type="button" @click= "Login"  class="btn-secondary  ">Prijavi se</button>
     </div>
+      
+
     
     </div>
     
+
+   
   </form>
   
   <br><br><br>
@@ -41,10 +47,60 @@
 </template>
 
 <script>
-export default {};
+import {firebase} from '@/views/firebase'
+import slugify from 'slugify'
+
+
+export default {
+  name:'Login',
+  data(){
+    return {
+      email: '',
+      lozinka: '',
+      feedback: '',
+      slug: ''
+    }
+  },
+
+ methods: {
+   Login(){
+
+     if(this.email && this.lozinka){
+       this.slug = slugify(this.email, {
+                    replacement: '-',
+                    remove: /[$*_+~.()'"!\-:@]/g,
+                    lower: true })
+      firebase.auth().signInWithEmailAndPassword(this.email, this.lozinka)
+     .then( ()=> {
+                    db.collection("korisnici").where("email_korisnika", "==", this.email).get()
+                    .then(querySnapshot => {
+                          console.log(querySnapshot)})
+                          if(!querySnapshot.empty){
+                            
+                            this.$router.push('/home')
+                          }
+                    
+      } ).catch(err => {
+                this.feedback = err.message })
+                this.feedback = null             
+    }
+
+    else {
+      this.feedback = 'Ispunite sva polja!'
+    }
+      
+ 
+   console.log('nastavak');
+
+        
+        },
+    },
+};
+
 </script>
 
 <style scoped>
+
 
 
 
@@ -52,6 +108,9 @@ export default {};
   height: 160px;
 }
 
+.form-control{
+    height: 50px;
+}
 
 .btn-primary {
   stroke: rgba(112, 112, 112, 1);

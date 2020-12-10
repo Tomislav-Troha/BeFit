@@ -18,7 +18,8 @@ const router = new Router ({
     {
       path: '/',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: { transition: 'fade-in-left' }
     },
 
    {
@@ -35,14 +36,18 @@ const router = new Router ({
   
   {
     path: '/home',
-    name: 'Home',
-    component: Home
+      name: 'Home',
+      component: Home,
+     
   },
+
   {
     path: '/skola_prehrane',
     name: 'Skola_prehrane',
-    component: Skola_prehrane
+    component: Skola_prehrane,
+    meta: { transition: 'flip-x' },
   },
+
   {
     path: '/onama',
     name: 'Onama',

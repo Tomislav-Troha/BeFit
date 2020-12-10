@@ -1,115 +1,156 @@
 <template>
-  <form @submit.prevent="loginKorisnik" class="container">
-    <div class="form-group_sign mx-auto ">
-      <label id="slova_signup" for="ime">Ime: </label>
+  <div>
+  <form  class="container mt-5 mb-5" id="signup_cont" style="background-color:#c4c4c4; max-width:450px;">
+    <div class="mx-auto rounded-lg mt-5">
+    <div class="form-group_login mx-auto p-3 m-4 ">
+
+      <label id="signup" for="ime">Ime: </label>
       <input
-        type="email"
-        class="form-control mx-auto"
-        id="email-adresa"
+        type="text"
+        class="form-control mx-auto "
         aria-describedby="emailHelp"
         placeholder="Unesite ime"
-        v-model="email"
-      />
-    </div>
-    <div class="form-group_sign mx-auto">
-      <label id="slova_signup" for="prezime">Prezime: </label>
+        v-model="ime"/>
+
+      <label id="signup" for="prezime">Prezime: </label>
       <input
         type="text"
         class="form-control mx-auto"
-        id="lozinka"
         placeholder="Unesite prezime"
-        v-model="lozinka"
-      />
-    </div>
-    <div class="form-group_sign mx-auto">
-      <label id="slova_signup" for="datum_rodenja">Datum rođenja: </label>
+        v-model="prezime"/>
+
+        <label id="signup" for="datum">Datum rođenja: </label>
       <input
         type="date"
         class="form-control mx-auto"
-        id="lozinka"
-        placeholder="Unesite datum rodenja"
-        v-model="lozinka"
-      />
-    </div>
-    <div class="form-group_sign mx-auto">
-      <label id="slova_signup" for="email">E-mail: </label>
+        placeholder="Unesite datum"
+        v-model="datum"/>
+
+         <label id="signup" for="email">E-mail: </label>
       <input
         type="email"
         class="form-control mx-auto"
-        id="lozinka"
-        placeholder="Unesite E-mail"
-        v-model="lozinka"
-      />
-    </div>
-    <div class="form-group_sign mx-auto">
-      <label id="slova_signup" for="lozinka">Lozinka: </label>
+        placeholder="Unesite e-mail"
+        v-model="email"/>
+
+         <label id="signup" for="lozinka">Lozinka: </label>
       <input
         type="password"
         class="form-control mx-auto"
-        id="lozinka"
         placeholder="Unesite lozinku"
-        v-model="lozinka"
-      />
+        v-model="lozinka"/>
+         <p class="text-danger text-center" v-if="feedback">{{ feedback }}</p>
     </div>
-    <p class="text-danger text-center " v-if="feedback">
-      {{ feedback }}
-    </p>
-    <router-link to="Home" tag="button" type=" submit" class="btn-secondary">Registriraj se</router-link>
+
+   
+
+<div class="sale text-center mt-3">
+    
+   
+    <button  type="button" @click= "Signup" class="btn-primary mb-2 ">Registriraj se</button>
+    </div>
+    
+    </div>
+    
   </form>
+  
+  <br><br><br>
+ 
+</div>
 </template>
 
 <script>
-export default {};
+import {firebase} from '@/views/firebase'
+
+
+export default {
+  name:'Signup',
+  data(){
+    return {
+      ime: '',
+      prezime: '',
+      datum: '',
+      email: '',
+      lozinka: '',
+      feedback: '',
+      slug: ''
+    }
+  },
+
+ methods: {
+   Signup(){
+
+    if(this.email && this.lozinka){
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.lozinka)
+     .then(function()
+     { console.log ('Uspijesna registacija');
+      } ).catch(err => {
+                this.feedback = err.message })
+                this.feedback = null             
+    }
+
+    else {
+      this.feedback = 'Ispunite sva polja!'
+    }
+      
+        
+
+   console.log('nastavak');
+
+   
+
+   
+            
+        },
+             
+      
+  
+    },
+
+
+       
+  
+
+};
+
+
+
+
 </script>
 
 <style scoped>
 
-.container {
-  max-width: 500px !important;
-  height: 500px;
+
+.form-control{
+  height: 50px;
+
+
+}
+
+#signup_cont{
   fill: rgba(196, 196, 196, 1);
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
-  margin-top: 80px;
   background: #c4c4c4;
-  position: inherit;
 }
 
-.form-control {
-  width: 350px !important;
-  height: 55px !important;
-}
 
-.btn-secondary {
+.btn-primary {
   stroke: rgba(112, 112, 112, 1);
   shape-rendering: auto;
   overflow: visible;
   width: 200px;
   height: 50px;
-  background-color: #00D841;
   border: none;
   border-radius: 22px;
   font-size: 25px;
-  margin-top: 8px;
-  margin-left: 140px;
   position: relative;
   outline: none !important;
   outline-width: 0 !important;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-}
-
-.btn-secondary:hover{
-  background-color:#08A538;
-}
-
-#slova_signup {
-  margin: 8px 60px 0px;
-
-  font-family: "Segoe UI";
-  color: #444444;
-  font-style: italic;
-  font-weight: bold;
+  
+  
 }
 </style>

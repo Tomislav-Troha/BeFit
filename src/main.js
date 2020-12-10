@@ -8,6 +8,11 @@ import BackToTop from 'vue-backtotop'
 import Unicon from 'vue-unicons'
 import { uniArrowDown } from 'vue-unicons/src/icons'
 require("@fortawesome/fontawesome-free/css/all.min.css");
+import VuePageTransition from 'vue-page-transition'
+ 
+Vue.use(VuePageTransition)
+
+
 
 
 
