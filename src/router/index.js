@@ -5,6 +5,7 @@ import Signup from '@/components/Prijava/Signup'
 import Home from '@/components/Home'
 import Skola_prehrane from '@/components/Skola_prehrane'
 import Onama from '@/components/Onama'
+import Prehrambeni_status from '@/components/Prehrambeni_status'
 
 
 
@@ -52,6 +53,11 @@ const router = new Router ({
     path: '/onama',
     name: 'Onama',
     component: Onama
+  },
+  {
+    path: '/prehrambeni_status',
+    name: 'Prehrambeni_status',
+    component: Prehrambeni_status
   }
 ]
 })
