@@ -14,15 +14,17 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.20.1",
     "core-js": "^3.6.5",
-    "firebase": "^8.1.2",
+    "firebase": "^8.2.0",
     "mdbvue": "^6.7.2",
     "slugify": "^1.4.6",
     "vue": "^2.6.12",
     "vue-backtotop": "^1.6.1",
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-page-transition": "^0.2.2",
     "vue-router": "^3.2.0",
     "vue-scrollto": "^2.20.0",
-    "vue-unicons": "^2.3.0"
+    "vue-unicons": "^2.3.0",
+    "vuejs-overlay": "0.0.28"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

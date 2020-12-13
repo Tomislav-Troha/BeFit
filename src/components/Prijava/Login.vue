@@ -97,7 +97,7 @@ export default {
           .signInWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
             db.collection("korisnici")
-              .where("email_korisnika", "==", this.email)
+              .where("email", "==", this.email)
               .get()
               .then((querySnapshot) => {
                 console.log(querySnapshot);

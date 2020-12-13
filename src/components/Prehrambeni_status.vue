@@ -11,6 +11,7 @@
         nutritivnu evaluaciju
       </p>
     </div>
+    
 
     <div
       class="bg-secondary text-light mx-5  "
@@ -57,17 +58,18 @@
     </div>
 
     <div class="text-center mt-5">
-      <img src="@/assets/rendi.jpg" />
+      <img src="@/assets/mali.jpg" style="width:960px; height:800px;" />
     </div>
     <br /><br /><br />
 
-    <div class="status mt-5 mx-auto" id="masti" style=" max-width:450px;">
+
+    <div  class="status mt-5 mx-auto" id="masti demo" style=" max-width:450px;">
       <b-card
         header="Udio masti u tijelu"
         class="text-center"
         style="background-color:#F8F8F8;"
       >
-        <b-form @submit="onSubmit" @reset="onReset" class="text-left">
+        <b-form @submit="onSubmit"  class="text-left">
           <b-form-group id="input-group-1" label="Spol:" label-for="input-1">
             <b-form-select
               id="input-1"
@@ -94,7 +96,7 @@
             label-for="input-2"
           >
             <b-form-input
-              v-model="form.tjelesna_visina"
+              v-model.number="form.tjelesna_visina"
               type="number"
               placeholder="Unesite tjelesnu visinu (cm)"
             ></b-form-input>
@@ -105,7 +107,7 @@
             label-for="input-2"
           >
             <b-form-input
-              v-model="form.opseg_struka"
+              v-model.number="form.opseg_struka"
               placeholder="Unesite opseg struka (cm)"
               type="number"
             ></b-form-input>
@@ -116,46 +118,113 @@
             label-for="input-2"
           >
             <b-form-input
-              v-model="form.opseg_vrata"
+              v-model.number="form.opseg_vrata"
               placeholder="Unesite opseg vrata (cm)"
               type="number"
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="success">Izračunaj</b-button>
-          <b-button type="reset" variant="danger" class="mx-2">Reset</b-button>
+ 
+          <b-button type="sumbit" variant="success" data-toggle="modal" data-target="#exampleModalCenter">Izračunaj</b-button>
+         <p>Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> % </p>
+         <p>Status: <strong>{{status_masti}}</strong></p>
         </b-form>
       </b-card>
     </div>
+
+    
+
+ 
     <back-to-top bottom="50px" right="50px">
       <button type="button" class=" btn-to-top  ">
         <i class="fa fa-chevron-up text-center"></i>
       </button>
     </back-to-top>
+
+
+    
+    
+  <Indeks/>
+   
   </div>
+
+  
+
 </template>
 
 <script>
+
+import Indeks from './Pre_status_comp/Indeks.vue';
+
 export default {
+  name:'Prehrambeni_status',
+  components:{Indeks,},
+
+  el: '#demo',
   data() {
+    
     return {
+      solution: 0,
+      status_masti: "",
       form: {
         spol: null,
         dob: "",
         tjelesna_visina: "",
         opseg_struka: "",
         opseg_vrata: "",
+        
       },
 
       spol: [{ text: "Odaberi spol", value: null }, "Muško", "Žensko"],
-      show: true,
+      show: false,
     };
   },
   methods: {
     onSubmit(evt) {
+      
       evt.preventDefault();
-      JSON.stringify(this.form);
+      JSON.stringify(this.form)
+
+      var solution=null
+
+      if(this.form.spol==="Muško"){
+      this.solution=(495/(1.0324-0.19077*Math.log10(this.form.opseg_struka-this.form.opseg_vrata)+0.15456*Math.log10(this.form.tjelesna_visina)))-450
+
+        if(this.solution > 2 && this.solution < 5){
+          return this.status_masti='”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.'
+        }
+        else if(this.solution > 6 && this.solution < 13 || this.solution > 14 && this.solution < 17 ){
+          return this.status_masti= 'Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.'
+        }
+        else if(this.solution > 18 && this.solution < 24){
+          return this.status_masti = "U prosječnom rasponu"
+        }
+        else return this.status_masti = "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja."
+
+      }
+      else {
+      this.solution=(495/(1.29579-0.35004*Math.log10(this.form.opseg_struka + 95 - this.form.opseg_vrata) + 0.22100*Math.log10(this.form.tjelesna_visina))) -450
+
+            if(this.solution > 10 && this.solution < 13){
+          return this.status_masti='”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.'
+        }
+        else if(this.solution > 14 && this.solution < 20 || this.solution > 21 && this.solution < 24 ){
+          return this.status_masti= 'Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.'
+        }
+        else if(this.solution > 25 && this.solution < 31){
+          return this.status_masti = "U prosječnom rasponu"
+        }
+        else return this.status_masti = "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja."
+
+      }
+      
+      
+  
+      
+      
     },
+
+
     onReset(evt) {
       evt.preventDefault();
       this.form.spol = null;
@@ -163,17 +232,29 @@ export default {
       this.form.tjelesna_visina = "";
       this.form.opseg_struka = "";
       this.form.opseg_vrata = "";
+      
 
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
     },
+
+    
   },
 };
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+
+
 .card-header {
   background-color: #e6e6e6;
   font-size: 30px;
@@ -220,7 +301,6 @@ export default {
   fill: rgba(196, 196, 196, 1);
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
-  background: green;
   border-radius: 25px;
 }
 </style>

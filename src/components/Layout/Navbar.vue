@@ -12,9 +12,8 @@
             <a id="befit">BeFit</a></router-link
           >
         </b-nav-item>
-        <b-nav-item nav-link right @click="odjava" v-if="user"
-          >Odjava</b-nav-item
-        >
+        <b-nav-item nav-link right @click="odjava" v-if="user">Odjava</b-nav-item>
+
       </b-navbar-nav>
     </b-navbar>
   </div>

@@ -9,10 +9,12 @@ import Unicon from 'vue-unicons'
 import { uniArrowDown } from 'vue-unicons/src/icons'
 require("@fortawesome/fontawesome-free/css/all.min.css");
 import VuePageTransition from 'vue-page-transition'
+
+
+
+
  
 Vue.use(VuePageTransition)
-
-
 
 
 
@@ -21,17 +23,21 @@ Vue.use(Unicon)
 
 
 Vue.use(BackToTop)
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.config.productionTip = false;
+
+
 const VueScrollTo = require('vue-scrollto')
 Vue.use(VueScrollTo)
 
+Vue.config.productionTip = false;
 
 new Vue({
     router,
     render: (h) => h(App),
-    components : {App}
+    components : {App},
+                
 }).$mount('#app');
 
 
