@@ -87,6 +87,10 @@
             Registriraj se
           </button>
         </div>
+       
+      </div>
+      <div class="text-center">
+       <small id="terms">By continuing, you agree to BeFit <strong>Terms of use</strong> and confirm that you have read its <strong>Privacy Policy</strong></small>
       </div>
     </form>
 
@@ -135,6 +139,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .form-control {
   height: 50px;
 }
