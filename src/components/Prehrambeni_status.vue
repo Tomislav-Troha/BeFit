@@ -1,6 +1,10 @@
 <template>
   <div style="background-color:#CEFFD1">
-    <div class="bg-secondary text-light mx-5 rounded-lg " id="poc_tekst" style="background-color:#CEFFD1">
+    <div
+      class="bg-secondary text-light mx-5 rounded-lg "
+      id="poc_tekst"
+      style="background-color:#CEFFD1"
+    >
       <p
         class="lead p-3 mt-1 text-center"
         id="tekst"
@@ -11,7 +15,6 @@
         nutritivnu evaluaciju
       </p>
     </div>
-    
 
     <div
       class="bg-secondary text-light mx-5  "
@@ -42,7 +45,6 @@
           >
             <nav-item v-scroll-to="'#indeks'">Indeks tjelesne mase</nav-item>
           </b-card-text>
-          
         </b-card>
 
         <b-card
@@ -63,15 +65,15 @@
       <img src="@/assets/mali.jpg" style="width:960px; height:800px;" />
     </div>
     <br /><br /><br />
-<div id ="masti"></div>
+    <div id="masti"></div>
 
-    <div  class="status mt-5 mx-auto" style=" max-width:450px;">
+    <div class="status mt-5 mx-auto" style=" max-width:450px;">
       <b-card
         header="Udio masti u tijelu"
         class="text-center"
         style="background-color:#F8F8F8;"
       >
-        <b-form @submit="onSubmit"  class="text-left">
+        <b-form @submit="onSubmit" class="text-left">
           <b-form-group id="input-group-1" label="Spol:" label-for="input-1">
             <b-form-select
               id="input-1"
@@ -126,49 +128,55 @@
             ></b-form-input>
           </b-form-group>
 
- 
-          <b-button type="sumbit" variant="success" data-toggle="modal" data-target="#exampleModalCenter">Izračunaj</b-button>
-          
-         <p>Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> % </p>
-         <p>Status: <strong>{{status_masti}}</strong></p>
+          <b-button
+            type="sumbit"
+            variant="success"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            >Izračunaj</b-button
+          >
+
+          <p>
+            Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> %
+          </p>
+          <p>
+            Status: <strong>{{ status_masti }}</strong>
+          </p>
         </b-form>
       </b-card>
     </div>
 
-    
-
- 
     <back-to-top bottom="50px" right="50px">
       <button type="button" class=" btn-to-top  ">
         <i class="fa fa-chevron-up text-center"></i>
       </button>
     </back-to-top>
 
-
-   <br><br> <br><br> <br><br> <br><br> <br><br>
-  <div id ="indeks" class=""></div> 
-  <Indeks/>
-  <br><br> <br><br> <br><br> <br><br> <br><br>
-  <div id ="omjer"></div>
-  <Omjer/>
-   
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <div id="indeks" class=""></div>
+    <Indeks />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <br /><br />
+    <div id="omjer"></div>
+    <Omjer />
   </div>
-
-  
-
 </template>
 
 <script>
-
-import Indeks from './Pre_status_comp/Indeks.vue';
-import Omjer from './Pre_status_comp/Omjer.vue';
-
+import Indeks from "./Pre_status_comp/Indeks.vue";
+import Omjer from "./Pre_status_comp/Omjer.vue";
 
 export default {
-  name:'Prehrambeni_status',
-  components:{Indeks,Omjer},
+  name: "Prehrambeni_status",
+  components: { Indeks, Omjer },
   data() {
-    
     return {
       solution: 0,
       status_masti: "",
@@ -178,8 +186,6 @@ export default {
         tjelesna_visina: "",
         opseg_struka: "",
         opseg_vrata: "",
-        
-        
       },
 
       spol: [{ text: "Odaberi spol", value: null }, "Muško", "Žensko"],
@@ -188,73 +194,69 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      
       evt.preventDefault();
-      JSON.stringify(this.form)
+      JSON.stringify(this.form);
 
-      var solution=null
+      var solution = null;
 
-      
-        
-          
-      
+      if (this.form.spol === "Muško") {
+        this.solution =
+          495 /
+            (1.0324 -
+              0.19077 *
+                Math.log10(this.form.opseg_struka - this.form.opseg_vrata) +
+              0.15456 * Math.log10(this.form.tjelesna_visina)) -
+          450;
 
-      if(this.form.spol==="Muško"){
-      this.solution=(495/(1.0324-0.19077*Math.log10(this.form.opseg_struka-this.form.opseg_vrata)+0.15456*Math.log10(this.form.tjelesna_visina)))-450
-            
-        if(this.solution<2){
-          return this.status_masti="Krivo uneseni podaci"
-        }    
-
-        else if(this.solution > 2 && this.solution < 5){
-          return this.status_masti='”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.'
-        }
-        else if(this.solution > 6 && this.solution < 13 || this.solution > 14 && this.solution < 17 ){
-          return this.status_masti= 'Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.'
-        }
-        else if(this.solution > 18 && this.solution < 24){
-          return this.status_masti = "U prosječnom rasponu"
-        }
-        else if(this.solution > 25 && this.solution < 80  ) { return this.status_masti = "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja."
-        }
-            
-        
-
-       
-      }
-      
-          
-       
-       
-    
-
-      if(this.form.spol==="Žensko") {
-         this.solution=(495/(1.29579-0.35004*Math.log10(this.form.opseg_struka + 95 - this.form.opseg_vrata) + 0.22100*Math.log10(this.form.tjelesna_visina))) -450
-
-         if(this.solution<10 && this.solution > 80){
-          return this.status_masti="Krivo uneseni podaci"
-        }    
-            
-            else if(this.solution > 10 && this.solution < 13){
-          return this.status_masti='”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.'
-        }
-        else if(this.solution > 14 && this.solution < 20 || this.solution > 21 && this.solution < 24 ){
-          return this.status_masti= 'Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.'
-        }
-        else if(this.solution > 25 && this.solution < 31){
-          return this.status_masti = "U prosječnom rasponu"
-        }
-        else if (this.solution > 31 && this.solution < 80  ) {
-          return this.status_masti = "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja."
+        if (this.solution < 2) {
+          return (this.status_masti = "Krivo uneseni podaci");
+        } else if (this.solution > 2 && this.solution < 5) {
+          return (this.status_masti =
+            "”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.");
+        } else if (
+          (this.solution > 6 && this.solution < 13) ||
+          (this.solution > 14 && this.solution < 17)
+        ) {
+          return (this.status_masti =
+            "Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.");
+        } else if (this.solution > 18 && this.solution < 24) {
+          return (this.status_masti = "U prosječnom rasponu");
+        } else if (this.solution > 25 && this.solution < 80) {
+          return (this.status_masti =
+            "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja.");
         }
       }
-      
-      
-  
-      
-      
+
+      if (this.form.spol === "Žensko") {
+        this.solution =
+          495 /
+            (1.29579 -
+              0.35004 *
+                Math.log10(
+                  this.form.opseg_struka + 95 - this.form.opseg_vrata
+                ) +
+              0.221 * Math.log10(this.form.tjelesna_visina)) -
+          450;
+
+        if (this.solution < 10 && this.solution > 80) {
+          return (this.status_masti = "Krivo uneseni podaci");
+        } else if (this.solution > 10 && this.solution < 13) {
+          return (this.status_masti =
+            "”Esencijalna mast“ - minimalna količina masti potrebna za preživljavanje – sve manje od toga može dovesti do težih posljedica po zdravlje. Baš iz tog razloga bodybuilderi takvu nisku razinu masti imaju samo pred natjecanje, a ostatak vremena je održavaju više kako bi mogli normalno funkcionirati.");
+        } else if (
+          (this.solution > 14 && this.solution < 20) ||
+          (this.solution > 21 && this.solution < 24)
+        ) {
+          return (this.status_masti =
+            "Udio masnog tkiva u Vašem tijelu, osim što se ne odražava negativno na zdravlje, omogućuje Vam i prihvatljiv izgled.");
+        } else if (this.solution > 25 && this.solution < 31) {
+          return (this.status_masti = "U prosječnom rasponu");
+        } else if (this.solution > 31 && this.solution < 80) {
+          return (this.status_masti =
+            "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja.");
+        }
+      }
     },
-
 
     onReset(evt) {
       evt.preventDefault();
@@ -263,24 +265,20 @@ export default {
       this.form.tjelesna_visina = "";
       this.form.opseg_struka = "";
       this.form.opseg_vrata = "";
-      
 
       this.show = false;
       this.$nextTick(() => {
         this.show = true;
       });
     },
-
-    
   },
 };
 </script>
 
 <style scoped>
-
-html, 
-body{
-  background-color: #CEFFD1;
+html,
+body {
+  background-color: #ceffd1;
 }
 
 .card-header {
@@ -317,7 +315,7 @@ body{
 }
 
 .bg-secondary {
-  background-color: #CEFFD1 !important;
+  background-color: #ceffd1 !important;
 }
 #tekst {
   margin-top: 30px;

@@ -32,7 +32,13 @@
       </b-card>
 
       <b-card class="text-center" style="max-width:550px; ">
-        <b-card-text style="font-size:25px">Calorie counter</b-card-text>
+        <b-card-text style="font-size:25px"
+          ><router-link
+            to="Calorie"
+            style="font-size:25px;color:black;text-decoration: none;"
+            >Calorie counter</router-link
+          ></b-card-text
+        >
       </b-card>
     </b-card-group>
   </div>

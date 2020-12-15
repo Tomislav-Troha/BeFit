@@ -6,16 +6,16 @@ import Home from '@/components/Home'
 import Skola_prehrane from '@/components/Skola_prehrane'
 import Onama from '@/components/Onama'
 import Prehrambeni_status from '@/components/Prehrambeni_status'
-
+import Calorie from '@/components/Calorie'
 
 
 
 
 Vue.use(Router)
 
-const router = new Router ({
+const router = new Router({
   mode: 'history',
-  routes:[
+  routes: [
     {
       path: '/',
       name: 'login',
@@ -23,43 +23,48 @@ const router = new Router ({
       meta: { transition: 'fade-in-left' }
     },
 
-   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  
-  {
-    path: '/signup',
-    name: 'Signup',
-    component: Signup
-  },
-  
-  {
-    path: '/home',
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    },
+
+    {
+      path: '/home',
       name: 'Home',
       component: Home,
-     
-  },
 
-  {
-    path: '/skola_prehrane',
-    name: 'Skola_prehrane',
-    component: Skola_prehrane,
-    meta: { transition: 'flip-x' },
-  },
+    },
 
-  {
-    path: '/onama',
-    name: 'Onama',
-    component: Onama
-  },
-  {
-    path: '/prehrambeni_status',
-    name: 'Prehrambeni_status',
-    component: Prehrambeni_status
-  }
-]
+    {
+      path: '/skola_prehrane',
+      name: 'Skola_prehrane',
+      component: Skola_prehrane,
+      meta: { transition: 'flip-x' },
+    },
+
+    {
+      path: '/onama',
+      name: 'Onama',
+      component: Onama
+    },
+    {
+      path: '/prehrambeni_status',
+      name: 'Prehrambeni_status',
+      component: Prehrambeni_status
+    },
+    {
+      path: '/calorie',
+      name: 'Calorie',
+      component: Calorie
+    }
+  ]
 })
 
 
