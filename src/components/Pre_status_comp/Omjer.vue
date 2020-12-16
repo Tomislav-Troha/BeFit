@@ -29,6 +29,7 @@
              v-model="form.omjer_dob"
               placeholder="Dob"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
 
@@ -43,6 +44,7 @@
                v-model="form.omjer_struka"
               type="number"
               placeholder="Opseg struka (cm)"
+              required
             ></b-form-input>
           </b-form-group>
 
@@ -57,6 +59,7 @@
                v-model="form.omjer_bok"
               placeholder="Opseg bokova (cm)"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
           

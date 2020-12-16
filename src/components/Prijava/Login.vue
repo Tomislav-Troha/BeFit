@@ -23,6 +23,7 @@
             aria-describedby="emailHelp"
             placeholder="Unesite email"
             v-model="email"
+            
           />
 
           <label
@@ -38,6 +39,7 @@
             id="lozinka"
             placeholder="Unesite lozinku"
             v-model="lozinka"
+            
           />
           <p class="text-danger text-center" v-if="feedback">{{ feedback }}</p>
         </div>

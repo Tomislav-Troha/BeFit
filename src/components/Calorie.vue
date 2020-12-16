@@ -1,15 +1,16 @@
 <template>
-  <div :message="msg">
+  <div style="background-color:#ceffd1" class="mx-3">
+    <br>
     <div
-      class="bg-secondary text-dark p-3 mx-5 mt-4 "
-      style="background-color:white !important;"
+      class="status mt-5 mx-5 p-4"
+      style="background-color: #f8f8f8; !important; max-width:450px;"
       id="masti"
     >
       <h2>Unesi podatke:</h2>
       <b-form @submit="onSubmit" class="text-left">
         <b-form-group id="input-group-1" label="Spol:" label-for="input-1">
           <b-form-select
-            class="w-25"
+            
             id="input-1"
             v-model="form.calorie_spol"
             :options="calorie_spol"
@@ -19,7 +20,7 @@
         </b-form-group>
         <b-form-group id="input-group-1" label="Aktivnost:" label-for="input-1">
           <b-form-select
-            class="w-25"
+            
             id="input-1"
             v-model="form.calorie_aktivnost"
             :options="calorie_aktivnost"
@@ -28,7 +29,7 @@
           </b-form-select>
         </b-form-group>
         <b-form-group
-          class="w-25"
+          
           id="input-group-2"
           label="Unesite težinu (kg):"
           label-for="input-2"
@@ -41,7 +42,7 @@
         </b-form-group>
         <b-form-group id="input-group-1" label="Unesite visinu (cm):" label-for="input-1">
           <b-form-input
-            class="w-25"
+           
             id="input-1"
             type="number"
             v-model="form.calorie_visina"
@@ -51,7 +52,7 @@
         </b-form-group>
         <b-form-group id="input-group-1" label=" Unesite dob:" label-for="input-1">
           <b-form-input
-            class="w-25"
+           
             id="input-1"
             type="number"
             v-model="form.calorie_dob"
@@ -86,7 +87,7 @@
             content-cols-lg="2"
             v-model="kalorija1"
           >
-           <strong>{{ solution1.toFixed(0) }}&nbsp;kCal </strong></b-form-group>
+           <strong>{{ sol.solution1.toFixed(0) }}&nbsp;kCal </strong></b-form-group>
           <b-form-group
             id="fieldset-horizontal"
             label="PROTEINA ="
@@ -96,7 +97,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-          <p>  <strong>{{ solution2.toFixed(0) }}&nbsp;g</strong> </p>
+          <p>  <strong>{{ sol.solution2.toFixed(0) }}&nbsp;g</strong> </p>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -107,7 +108,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution2.toFixed(0) }}&nbsp;g</strong>
+            <strong>{{ sol.solution2.toFixed(0) }}&nbsp;g</strong>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -118,12 +119,12 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution4.toFixed(0) }} &nbsp;g</strong>
+            <strong>{{ sol.solution4.toFixed(0) }} &nbsp;g</strong>
           </b-form-group>
         </b-form>
       </b-card>
     </div>
-  <Kalorije />
+  <Kalorije v-bind:form="form" v-bind:sol="sol" />
   </div>
   
 </template>
@@ -133,6 +134,10 @@
 
 import Kalorije from "./Pre_status_comp/Kalorije.vue";
 
+
+
+
+
 export default {
   name: "Calorie",
   
@@ -140,10 +145,12 @@ export default {
   
   data() {
     return {
+      sol:{
       solution1: 0,
       solution2: 0,
       solution3: 0,
       solution4: 0,
+      },
       form: {
         calorie_aktivnost: null,
         calorie_spol: null,
@@ -174,19 +181,19 @@ export default {
 
       var solution = null;
       if (this.form.calorie_spol == "Muško" && this.form.calorie_aktivnost == "Neaktivan") {
-        this.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.2
-        this.solution2=(this.solution1*0.40)/7.7
-        this.solution4=(this.solution1*0.20)/7.7
+        this.sol.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.2
+        this.sol.solution2=(this.sol.solution1*0.40)/7.7
+        this.sol.solution4=(this.sol.solution1*0.20)/7.7
       }
       else if(this.form.calorie_spol == "Muško" && this.form.calorie_aktivnost == "Srednje aktivan"){
-        this.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.55
-        this.solution2=(this.solution1*0.40)/7.7
-        this.solution4=(this.solution1*0.20)/7.7
+        this.sol.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.55
+        this.sol.solution2=(this.sol.solution1*0.40)/7.7
+        this.sol.solution4=(this.sol.solution1*0.20)/7.7
       }
        else if(this.form.calorie_spol == "Muško" && this.form.calorie_aktivnost == "Jako aktivan"){
-        this.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.9
-        this.solution2=(this.solution1*0.40)/7.7
-        this.solution4=(this.solution1*0.20)/7.7
+        this.sol.solution1=(((this.form.calorie_tezina*10)+(this.form.calorie_visina*6.25)-(this.form.calorie_dob*5)+5))*1.9
+        this.sol.solution2=(this.sol.solution1*0.40)/7.7
+        this.sol.solution4=(this.sol.solution1*0.20)/7.7
       }
 
 
@@ -229,5 +236,12 @@ export default {
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
   border-radius: 25px;
+}
+
+#masti{
+   fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+  border-radius: 5px;
 }
 </style>

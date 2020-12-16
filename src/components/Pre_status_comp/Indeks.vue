@@ -29,6 +29,7 @@
              v-model="form.indeks_dob"
               placeholder="Unesite dob"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -40,6 +41,7 @@
                v-model="form.indeks_tjelesna_visina"
               type="number"
               placeholder="Unesite tjelesnu visinu (cm)"
+              required
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -51,6 +53,7 @@
                v-model="form.indeks_tjelesna_masa"
               placeholder="Unesite vašu težinu (kg)"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
           

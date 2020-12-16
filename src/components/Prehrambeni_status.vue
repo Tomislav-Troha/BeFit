@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#CEFFD1">
+  <div style="background-color:#CEFFD1" class="mx-3">
     <div
       class="bg-secondary text-light mx-5 rounded-lg "
       id="poc_tekst"
@@ -61,9 +61,9 @@
       </b-card-group>
     </div>
 
-    <div class="text-center mt-5">
-      <img src="@/assets/mali.jpg" style="width:960px; height:800px;" />
-    </div>
+    <b-jumbotron class="mb-0 p-0 text-center mx-auto mt-5" style="background-color:#CEFFD1">
+      <img src="@/assets/mali.jpg" width="50%" height="auto"  />
+    </b-jumbotron>
     <br /><br /><br />
     <div id="masti"></div>
 
@@ -92,6 +92,7 @@
               v-model="form.dob"
               placeholder="Unesite dob"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -103,6 +104,7 @@
               v-model.number="form.tjelesna_visina"
               type="number"
               placeholder="Unesite tjelesnu visinu (cm)"
+              required
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -114,6 +116,7 @@
               v-model.number="form.opseg_struka"
               placeholder="Unesite opseg struka (cm)"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -125,6 +128,7 @@
               v-model.number="form.opseg_vrata"
               placeholder="Unesite opseg vrata (cm)"
               type="number"
+              required
             ></b-form-input>
           </b-form-group>
 
