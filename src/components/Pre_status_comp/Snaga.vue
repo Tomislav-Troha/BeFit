@@ -3,7 +3,7 @@
     
     <div class="calorie mt-5 mx-5">
       <b-card
-        header="Cilj: izgubiti masti, dnevni unos mora biti:"
+        header="Cilj: Veličina i snaga:"
         class="text-left"
         style="background-color:#F8F8F8;"
       >
@@ -18,7 +18,7 @@
             content-cols-lg="2"
             
           >
-           <strong>{{solution1}}&nbsp;kCal </strong></b-form-group>
+           <strong>{{solution7.toFixed(0)}}&nbsp;kCal </strong></b-form-group>
           <b-form-group
             id="fieldset-horizontal"
             label="PROTEINA ="
@@ -28,7 +28,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-          <p>  <strong>{{ solution2 }}&nbsp;g</strong> </p>
+          <p>  <strong>{{ solution8.toFixed(0) }}&nbsp;g</strong> </p>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -39,7 +39,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution2 }}&nbsp;g</strong>
+            <strong>{{ solution9.toFixed(0) }}&nbsp;g</strong>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -50,7 +50,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{solution4}} &nbsp;g</strong>
+            <strong>{{solution10.toFixed(0)}} &nbsp;g</strong>
           </b-form-group>
         </b-form>
       </b-card>
@@ -60,32 +60,11 @@
 <script>
 
 export default {
-    name:'Kalorije', 
-    props: ['form', 'sol'],
-     
 
-   data() {
-    return {
-    
-     
-
-    }
-    
-  },
- 
-methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      JSON.stringify(this.form);
-
-    }
-    
-    }
+  name:'Snaga', 
+  props: ['solution7','solution8','solution9','solution10'],
 
 };
-
-
-
 </script>
 
 <style scoped>
