@@ -47,6 +47,7 @@ const router = new Router({
       name: 'Skola_prehrane',
       component: Skola_prehrane,
       meta: { transition: 'flip-x' },
+      
     },
 
     {

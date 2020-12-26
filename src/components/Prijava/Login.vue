@@ -60,7 +60,7 @@
             >Registriraj se</router-link
           >
 
-          <button type="button" @click="Login" class="btn-secondary  ">
+          <button type="button" @click="Login()" class="btn-secondary  ">
             Prijavi se
           </button>
         </div>
@@ -94,19 +94,17 @@ export default {
           remove: /[$*_+~.()'"!\-:@]/g,
           lower: true,
         });
+
+        let that = this;
+
         firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
-            db.collection("korisnici")
-              .where("email", "==", this.email)
-              .get()
-              .then((querySnapshot) => {
-                console.log(querySnapshot);
-              });
-            if (!querySnapshot.empty) {
-              this.$router.push("/home");
-            }
+
+            this.$router.replace({name: 'Home'})
+
+
           })
           .catch((err) => {
             this.feedback = err.message;

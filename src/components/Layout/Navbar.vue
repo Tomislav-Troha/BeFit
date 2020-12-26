@@ -12,20 +12,46 @@
             <a id="befit">BeFit</a></router-link
           >
         </b-nav-item>
-        <b-nav-item nav-link right @click="odjava" v-if="user">Odjava</b-nav-item>
+
+        
 
       </b-navbar-nav>
+
+<nav-item class="mx-auto">
+        <h1 style="font-size:70px;font-family:Segoe UI; font-weight: bold;" v-if="$route.name==='Home'">Dobrodošli</h1></nav-item>
+        <h1 style="font-size:70px;font-family:Segoe UI; font-weight: bold;" v-if="$route.name==='Skola_prehrane'">Škola prehrane</h1>
+        <h1 style="font-size:70px;font-family:Segoe UI; font-weight: bold;" v-if="$route.name==='Prehrambeni_status'">Prehrambeni status</h1>
+        <h1 style="font-size:70px;font-family:Segoe UI; font-weight: bold;" v-if="$route.name==='Calorie'">Calorie Counter</h1>
+
+
+       <nav-item right class="ml-auto mb-5"><a href="#" v-if="store.currentUser">{{store.currentUser}}</a></nav-item>
+
+
+      <nav-item right class="ml-auto mb-5"  >
+        <a href="#"  @click.prevent="odjava()" v-if="store.currentUser">Odjava</a></nav-item>
+
+       
+
     </b-navbar>
   </div>
 </template>
 
 <script>
+
+import store from "@/store";
+import { firebase } from "@/views/firebase";
+
+
+
+
+
 export default {
+  props: ['store'],
   name: "Navbar",
   data() {
     return {
       user: null,
-      logiran: {},
+      
     };
   },
   methods: {
@@ -34,7 +60,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.$router.push({ name: 'login' });
         });
     },
   },
