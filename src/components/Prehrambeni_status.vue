@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#CEFFD1" class="mx-3">
+  <div style="background-color:#CEFFD1" class="mx-3 mt-3">
     <div
       class="bg-secondary text-light mx-5 rounded-lg "
       id="poc_tekst"

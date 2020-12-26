@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:#ceffd1" class="mx-3">
+  <div style="background-color:#ceffd1" class="mx-3 mt-3">
     <br>
     <div
       class="status mt-5 mx-5 p-4"
