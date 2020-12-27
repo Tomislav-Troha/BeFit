@@ -137,16 +137,24 @@
             variant="success"
             data-toggle="modal"
             data-target="#exampleModalCenter"
-            >Izračunaj</b-button
-          >
+            >Izračunaj</b-button>
+            
+            <b-button
+            class="ml-1"
+            type="sumbit"
+            variant="danger"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            >Spremi</b-button>
 
+          
           <p>
             Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> %
           </p>
-          <p>
+          <p >
             Status: <strong>{{ status_masti }}</strong>
           </p>
-        </b-form>
+          </b-form>
       </b-card>
     </div>
 
@@ -177,9 +185,12 @@
 import Indeks from "./Pre_status_comp/Indeks.vue";
 import Omjer from "./Pre_status_comp/Omjer.vue";
 
+
+
 export default {
   name: "Prehrambeni_status",
   components: { Indeks, Omjer },
+  
   data() {
     return {
       solution: 0,
@@ -196,7 +207,13 @@ export default {
       show: false,
     };
   },
+  
+    
+  
+  
   methods: {
+    
+
     onSubmit(evt) {
       evt.preventDefault();
       JSON.stringify(this.form);
@@ -260,23 +277,13 @@ export default {
             "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja.");
         }
       }
+    
     },
 
-    onReset(evt) {
-      evt.preventDefault();
-      this.form.spol = null;
-      this.form.dob = "";
-      this.form.tjelesna_visina = "";
-      this.form.opseg_struka = "";
-      this.form.opseg_vrata = "";
-
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
-    },
+    
   },
 };
+
 </script>
 
 <style scoped>

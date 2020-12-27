@@ -7,6 +7,7 @@ import Skola_prehrane from '@/components/Skola_prehrane'
 import Onama from '@/components/Onama'
 import Prehrambeni_status from '@/components/Prehrambeni_status'
 import Calorie from '@/components/Calorie'
+import Stanje from '@/components/Stanje'
 
 
 
@@ -47,7 +48,7 @@ const router = new Router({
       name: 'Skola_prehrane',
       component: Skola_prehrane,
       meta: { transition: 'flip-x' },
-      
+
     },
 
     {
@@ -64,6 +65,11 @@ const router = new Router({
       path: '/calorie',
       name: 'Calorie',
       component: Calorie
+    },
+    {
+      path: '/stanje',
+      name: 'Stanje',
+      component: Stanje
     }
   ]
 })

@@ -66,8 +66,9 @@
 
  
           <b-button type="sumbit" variant="success" data-toggle="modal" data-target="#exampleModalCenter">Izračunaj</b-button>
+          <b-button class="ml-1" type="sumbit" variant="danger" data-toggle="modal" data-target="#exampleModalCenter" >Spremi</b-button>
          <p>Omjer struka i bokova iznosi: <strong>{{solution_omjer.toFixed(2) }}</strong></p>
-         <p>Status: <strong>{{status_omjer}}</strong></p>
+         <p >Status: <strong>{{status_omjer}}</strong></p>
         </b-form>
       </b-card>
     </div>

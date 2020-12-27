@@ -60,6 +60,7 @@
 
  
           <b-button type="sumbit" variant="success" data-toggle="modal" data-target="#exampleModalCenter">Izračunaj</b-button>
+          <b-button class="ml-1" type="sumbit" variant="danger" data-toggle="modal" data-target="#exampleModalCenter" >Spremi</b-button>
          <p>Indeks tjelesna mase iznosi: <strong>{{solution_indeks.toFixed(2) }}</strong></p>
          <p>Status: <strong>{{status_tjelesne_mase}}</strong></p>
         </b-form>

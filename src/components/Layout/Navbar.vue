@@ -19,6 +19,7 @@
         <h1  v-if="$route.name==='Skola_prehrane'">Škola prehrane</h1>
         <h1  v-if="$route.name==='Prehrambeni_status'">Prehrambeni status</h1>
         <h1  v-if="$route.name==='Calorie'">Calorie Counter</h1>
+        <h1  v-if="$route.name==='Stanje'">Tvoje stanje</h1>
 </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -30,7 +31,7 @@
           <template #button-content>
             <em style="font-size:25px;">Korisnik</em>
           </template>
-           <b-dropdown-item href="#" v-if="store.currentUser">{{store.currentUser}}</b-dropdown-item>
+           <b-dropdown-item href="#" @click.prevent="stanje()" v-if="store.currentUser">{{store.currentUser}}</b-dropdown-item>
           <b-dropdown-item href="#"  @click.prevent="odjava()" v-if="store.currentUser">Odjava</b-dropdown-item>
           <b-dropdown-item href="#" @click.prevent="onama()" v-if="store.currentUser">O nama</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -70,6 +71,9 @@ export default {
     onama(){
      this.$router.push({ name: 'Onama' });
     },
+    stanje(){
+      this.$router.push({ name: 'Stanje' });
+    }
   },
 };
 </script>
