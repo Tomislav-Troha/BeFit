@@ -8,6 +8,7 @@ import Onama from '@/components/Onama'
 import Prehrambeni_status from '@/components/Prehrambeni_status'
 import Calorie from '@/components/Calorie'
 import Stanje from '@/components/Stanje'
+import store from "@/store";
 
 
 
@@ -40,6 +41,9 @@ const router = new Router({
       path: '/home',
       name: 'Home',
       component: Home,
+      meta: {
+        needsUser: true,
+      },
 
     },
 
@@ -73,7 +77,15 @@ const router = new Router({
     }
   ]
 })
-
+router.beforeEach((to, from, next) => {
+  const noUser = store.currentUser === null;
+  if (noUser && to.meta.needsUser) {
+    next('login');
+  }
+  else {
+    next();
+  }
+})
 
 
 

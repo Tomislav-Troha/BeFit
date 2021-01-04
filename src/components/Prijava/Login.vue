@@ -102,10 +102,8 @@ export default {
           .signInWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
 
-            this.$router.replace({name: 'Home'})
-
-
-          })
+            
+            })
           .catch((err) => {
             this.feedback = err.message;
           });
