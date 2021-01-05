@@ -148,7 +148,7 @@ import Snaga from "./Pre_status_comp/Snaga.vue";
 
 export default {
   name: "Calorie",
-  
+  props:["kalorija1"],
   components: {misicnaMasa, Snaga},
   
   data() {

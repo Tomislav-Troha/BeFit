@@ -23,39 +23,35 @@
     >
       <b-card-group deck class="mx-auto ">
         <b-card
+          v-scroll-to="'#masti'"
           class="text-center"
           type="button"
           style="width:350px; background-color: #c4c4c4; border-radius: 25px;   "
           align="center"
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#masti'">Udio masti u tijelu</nav-item>
-          </b-card-text>
+          <b-card-text  
+            style="font-size:25px;color:black;text-decoration: none;">
+            Udio masti u tijelu</b-card-text>
         </b-card>
 
         <b-card
+        v-scroll-to="'#indeks'"
           type="button"
           class="text-center "
           style=" background-color: #c4c4c4; border-radius: 25px;   "
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#indeks'">Indeks tjelesne mase</nav-item>
-          </b-card-text>
+          <b-card-text  
+            style="font-size:25px;color:black;text-decoration: none;">Indeks tjelesne mase</b-card-text>
         </b-card>
 
         <b-card
+        v-scroll-to="'#omjer'"
           type="button"
           class="text-center "
           style=" background-color: #c4c4c4; border-radius: 25px; "
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#omjer'">Omjer struka i bokova</nav-item>
+          <b-card-text 
+            style="font-size:25px;color:black;text-decoration: none;">Omjer struka i bokova
           </b-card-text>
         </b-card>
       </b-card-group>
@@ -87,7 +83,7 @@
             id="input-group-2"
             label="Unesite dob"
             label-for="input-2"
-          >
+          >s
             <b-form-input
               v-model="form.dob"
               placeholder="Unesite dob"
@@ -184,6 +180,9 @@
 <script>
 import Indeks from "./Pre_status_comp/Indeks.vue";
 import Omjer from "./Pre_status_comp/Omjer.vue";
+import {db} from '@/views/firebase';
+import store from "@/store";
+
 
 
 
