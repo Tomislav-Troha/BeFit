@@ -23,39 +23,35 @@
     >
       <b-card-group deck class="mx-auto ">
         <b-card
+          v-scroll-to="'#masti'"
           class="text-center"
           type="button"
           style="width:350px; background-color: #c4c4c4; border-radius: 25px;   "
           align="center"
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#masti'">Udio masti u tijelu</nav-item>
-          </b-card-text>
+          <b-card-text  
+            style="font-size:25px;color:black;text-decoration: none;">
+            Udio masti u tijelu</b-card-text>
         </b-card>
 
         <b-card
+        v-scroll-to="'#indeks'"
           type="button"
           class="text-center "
           style=" background-color: #c4c4c4; border-radius: 25px;   "
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#indeks'">Indeks tjelesne mase</nav-item>
-          </b-card-text>
+          <b-card-text  
+            style="font-size:25px;color:black;text-decoration: none;">Indeks tjelesne mase</b-card-text>
         </b-card>
 
         <b-card
+        v-scroll-to="'#omjer'"
           type="button"
           class="text-center "
           style=" background-color: #c4c4c4; border-radius: 25px; "
         >
-          <b-card-text
-            style="font-size:25px;color:black;text-decoration: none;"
-          >
-            <nav-item v-scroll-to="'#omjer'">Omjer struka i bokova</nav-item>
+          <b-card-text 
+            style="font-size:25px;color:black;text-decoration: none;">Omjer struka i bokova
           </b-card-text>
         </b-card>
       </b-card-group>
@@ -137,16 +133,26 @@
             variant="success"
             data-toggle="modal"
             data-target="#exampleModalCenter"
-            >Izračunaj</b-button
-          >
+            >Izračunaj</b-button>
 
+           
+            <b-button
+            class="ml-1"
+            type="sumbit"
+            variant="danger"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            >Spremi</b-button>
+          
+
+          
           <p>
             Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> %
           </p>
-          <p>
+          <p >
             Status: <strong>{{ status_masti }}</strong>
           </p>
-        </b-form>
+          </b-form>
       </b-card>
     </div>
 
@@ -176,10 +182,15 @@
 <script>
 import Indeks from "./Pre_status_comp/Indeks.vue";
 import Omjer from "./Pre_status_comp/Omjer.vue";
+import {db} from '@/views/firebase';
+import store from "@/store";
+
 
 export default {
-  name: "Prehrambeni_status",
-  components: { Indeks, Omjer },
+  name:"Prehrambeni_status",
+  components: { Indeks, Omjer, },
+
+  
   data() {
     return {
       solution: 0,
@@ -196,7 +207,29 @@ export default {
       show: false,
     };
   },
+  
+    
+  
+  
   methods: {
+    
+    spremi_masti(){
+      console.log("ok")
+      
+      db.collection("stanje").add({
+        rezultat:solution,
+        masti: status_masti,
+        email: store.currentUser
+      })
+      .then((doc) => {
+        console.log('spremljeno', doc)
+      })
+      .catch((e) => {
+        console.error(e)
+      })
+
+    },
+
     onSubmit(evt) {
       evt.preventDefault();
       JSON.stringify(this.form);
@@ -260,23 +293,13 @@ export default {
             "Udio masnog tkiva u Vašem tijelu viši je od preporučenog.Povišen udio masnog tkiva uzrok je upalnih procesa koji rezultiraju mnogim zdravstvenim problemima, poput dijabetesa tipa II, kardiovaskularnih bolesti, nekih vrsta karcinoma te drugih oboljenja.");
         }
       }
+    
     },
 
-    onReset(evt) {
-      evt.preventDefault();
-      this.form.spol = null;
-      this.form.dob = "";
-      this.form.tjelesna_visina = "";
-      this.form.opseg_struka = "";
-      this.form.opseg_vrata = "";
-
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
-    },
+    
   },
 };
+
 </script>
 
 <style scoped>

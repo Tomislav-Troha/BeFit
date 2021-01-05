@@ -130,6 +130,7 @@
   <misicnaMasa  :solution4="solution4" :solution5="solution5" :solution6="solution6" />
 
   <Snaga :solution7="solution7" :solution8="solution8" :solution9="solution9" :solution10="solution10" />
+  <br><br><br>
   </div>
   
   
@@ -147,7 +148,7 @@ import Snaga from "./Pre_status_comp/Snaga.vue";
 
 export default {
   name: "Calorie",
-  
+  props:["kalorija1"],
   components: {misicnaMasa, Snaga},
   
   data() {
