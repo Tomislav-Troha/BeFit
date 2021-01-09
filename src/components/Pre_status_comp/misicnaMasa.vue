@@ -64,6 +64,10 @@ export default {
   name:'misicnaMasa', 
   props: ['solution4','solution5','solution6'],
 
+methods:{
+
+
+}
 };
 </script>
 

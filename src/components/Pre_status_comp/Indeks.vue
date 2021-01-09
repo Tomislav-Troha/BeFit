@@ -56,11 +56,20 @@
               required
             ></b-form-input>
           </b-form-group>
-          
-
- 
+   
+  
           <b-button type="sumbit" variant="success" data-toggle="modal" data-target="#exampleModalCenter">Izračunaj</b-button>
-          <b-button class="ml-1" type="sumbit" variant="danger" data-toggle="modal" data-target="#exampleModalCenter" >Spremi</b-button>
+  
+  
+         <b-form @submit.prevent="tvojeStanje_Indeks"  style="display:inline-block">
+            <b-button
+            class="ml-1"
+            type="sumbit"
+            variant="danger"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            >Spremi</b-button>
+            </b-form>
          <p>Indeks tjelesna mase iznosi: <strong>{{solution_indeks.toFixed(2) }}</strong></p>
          <p>Status: <strong>{{status_tjelesne_mase}}</strong></p>
         </b-form>
@@ -74,6 +83,11 @@
 </template>
 
 <script>
+
+import {db} from '@/views/firebase';
+import store from "@/store";
+
+
 export default {
     name:'Indeks',
   
@@ -96,6 +110,23 @@ export default {
   },
   
 methods: {
+
+tvojeStanje_Indeks(){
+
+      db.collection("tvojeStanje_Indeks").add({
+        solution_indeks: this.solution_indeks,
+        status_tjelesne_mase: this.status_tjelesne_mase,
+      })
+      .then((doc) => {
+        console.log("spremljeno", doc)
+      })
+      .catch((e) => {
+        console.error(e)
+      })
+
+    },
+
+
 onSubmit(evt) {
       
       evt.preventDefault();

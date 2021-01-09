@@ -83,7 +83,7 @@
             id="input-group-2"
             label="Unesite dob"
             label-for="input-2"
-          >s
+          >
             <b-form-input
               v-model="form.dob"
               placeholder="Unesite dob"
@@ -128,13 +128,16 @@
             ></b-form-input>
           </b-form-group>
 
+         
           <b-button
             type="sumbit"
             variant="success"
             data-toggle="modal"
             data-target="#exampleModalCenter"
             >Izračunaj</b-button>
+             
             
+            <b-form  style="display:inline-block" @submit.prevent="tvojeStanje">
             <b-button
             class="ml-1"
             type="sumbit"
@@ -142,6 +145,7 @@
             data-toggle="modal"
             data-target="#exampleModalCenter"
             >Spremi</b-button>
+            </b-form>
 
           
           <p>
@@ -211,7 +215,20 @@ export default {
   
   
   methods: {
-    
+    tvojeStanje(){
+
+      db.collection("tvojeStanje").add({
+        solution: this.solution,
+        status_masti: this.status_masti,
+      })
+      .then((doc) => {
+        console.log("spremljeno", doc)
+      })
+      .catch((e) => {
+        console.error(e)
+      })
+
+    },
 
     onSubmit(evt) {
       evt.preventDefault();
