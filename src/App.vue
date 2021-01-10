@@ -31,8 +31,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     store.currentUser = user.email;
     console.log(user)
      if(!currentRoute.meta.needsUser){
-       
-      router.push({name: "Home"})
+      router.replace({name: "Home"})
     }
     // User is signed in.
   } else {
