@@ -198,6 +198,7 @@ export default {
     return {
       solution: 0,
       status_masti: "",
+      email_M: "",
       form: {
         spol: null,
         dob: "",
@@ -216,8 +217,8 @@ export default {
   
   methods: {
     tvojeStanje(){
-
-      db.collection("tvojeStanje").add({
+       
+       db.collection("tvojeStanje").add({
         solution: this.solution,
         status_masti: this.status_masti,
       })

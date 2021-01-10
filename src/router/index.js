@@ -28,7 +28,10 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta:{
+        logged:true
+      }
     },
 
     {
@@ -51,40 +54,59 @@ const router = new Router({
       path: '/skola_prehrane',
       name: 'Skola_prehrane',
       component: Skola_prehrane,
-      meta: { transition: 'flip-x' },
+      meta: { transition: 'flip-x' }, 
 
     },
 
     {
       path: '/onama',
       name: 'Onama',
-      component: Onama
+      component: Onama,
+      meta: {
+        needsUser: true,
+      },
     },
     {
       path: '/prehrambeni_status',
       name: 'Prehrambeni_status',
-      component: Prehrambeni_status
+      component: Prehrambeni_status,
+      meta: {
+        needsUser: true,
+      },
     },
     {
       path: '/calorie',
       name: 'Calorie',
-      component: Calorie
+      component: Calorie,
+      meta: {
+        needsUser: true,
+      },
     },
     {
       path: '/stanje',
       name: 'Stanje',
-      component: Stanje
+      component: Stanje,meta: {
+        needsUser: true,
+      },
     }
   ]
 })
 router.beforeEach((to, from, next) => {
   const noUser = store.currentUser === null;
+  if (to.matched.some(record => record.meta.requiresAuth)) {
   if (noUser && to.meta.needsUser) {
-    next('login');
+    next({path: '/login',
+         query: { redirect: to.fullPath }});
   }
+
   else {
     next();
   }
+ 
+}
+else {
+  next();
+}
 })
 
 

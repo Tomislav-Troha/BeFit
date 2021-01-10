@@ -26,11 +26,12 @@
             label-cols-sm="2"
             label-cols-lg="2"
             content-cols-sm
-            content-cols-lg="2"
-          >
+            content-cols-lg="2">
+            
           <p class="mb-0 px-1 py-2">  <strong>{{Masti.status_masti}} &nbsp;</strong> </p>
           </b-form-group>
-          <button  @click.prevent="obrisi_masti(Masti.id)"  class="btn btn-danger">Obriši</button>
+          
+          <button @click.prevent="obrisi_masti(Masti.id); " class="btn btn-danger">Obriši</button>
          </b-form>
       </b-card>
        <b-card
@@ -95,7 +96,7 @@
           <p class="mb-0 px-1 py-2">  <strong>  &nbsp;{{Omjer.status_omjer}}</strong> </p>
           
           </b-form-group>
-            <button  @click.prevent="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
+            <button  @click="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
          </b-form>
       </b-card>
    
@@ -111,10 +112,10 @@ import { firebase } from "@/views/firebase";
 
 
 
+
 export default {
 
-
-
+ 
 data(){
   return{
     Masti: {},
@@ -132,7 +133,12 @@ data(){
   },
 
 
+
   methods: {
+
+    refreshPage(){
+    window.location.reload();
+},
 
     
 
@@ -140,7 +146,11 @@ data(){
       db.collection('tvojeStanje').doc(this.Masti.id).get()
         .then((querySnapshot) =>{
           querySnapshot.ref.delete()
-          console.log("ha")
+
+          console.log("haahah")
+          .catch((e) => {
+            console.error(e)
+          })
 
         })
       },
@@ -167,13 +177,13 @@ data(){
 
     
     getTvojeStanje(){
-      
       db.collection("tvojeStanje").get()
       .then((query) => {
         this.Masti = {}
         query.forEach((doc) => {
           this.Masti = doc.data()
           this.Masti.id = doc.id
+
 
         })
       })
