@@ -72,6 +72,7 @@
             </b-form>
          <p>Indeks tjelesna mase iznosi: <strong>{{solution_indeks.toFixed(2) }}</strong></p>
          <p>Status: <strong>{{status_tjelesne_mase}}</strong></p>
+         <p style="color: red;">{{feedback}}</p>
         </b-form>
       </b-card>
     </div>
@@ -96,6 +97,7 @@ export default {
     return {
       solution_indeks: 0,
       status_tjelesne_mase: "",
+      feedback:"",
       form: {
         indeks_spol: null,
         indeks_dob: "",
@@ -112,7 +114,11 @@ export default {
 methods: {
 
 tvojeStanje_Indeks(){
-
+     if(this.solution_indeks==0 || this.status_tjelesne_mase===""){
+            this.feedback = "Niste unijeli podatke"
+         }
+      else{
+        
       db.collection("tvojeStanje_Indeks").add({
         solution_indeks: this.solution_indeks,
         status_tjelesne_mase: this.status_tjelesne_mase,
@@ -123,7 +129,8 @@ tvojeStanje_Indeks(){
       .catch((e) => {
         console.error(e)
       })
-
+      this.feedback="Uspjesno spremljeno";
+      }
     },
 
 

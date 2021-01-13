@@ -74,6 +74,7 @@
 <script>
 import { firebase } from "@/views/firebase";
 import slugify from "slugify";
+import router from "@/router"
 
 export default {
   name: "Login",
@@ -101,7 +102,7 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
-
+              router.push({name: "Home"}) 
             
             })
           .catch((err) => {

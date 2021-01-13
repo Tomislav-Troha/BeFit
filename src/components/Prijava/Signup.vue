@@ -122,7 +122,7 @@ export default {
           .auth()
           .createUserWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
-
+            const userUid = user.uid;
             this.$router.replace({name: 'Home'})
 })
           .catch((err) => {

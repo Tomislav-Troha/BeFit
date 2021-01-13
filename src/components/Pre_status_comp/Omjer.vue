@@ -77,6 +77,7 @@
             </b-form>
          <p>Omjer struka i bokova iznosi: <strong>{{solution_omjer.toFixed(2) }}</strong></p>
          <p >Status: <strong>{{status_omjer}}</strong></p>
+         <p style="color:red;">{{feedback1}}</p>
         </b-form>
       </b-card>
     </div>
@@ -92,12 +93,16 @@ import {db} from '@/views/firebase';
 import store from "@/store";
 export default {
     name:'Omjer',
-  
+
+   
     data() {
+      
     
     return {
+      
       solution_omjer: 0,
       status_omjer: "",
+      feedback1:"",
       form: {
         omjer_spol: null,
         omjer_dob: "",
@@ -114,18 +119,24 @@ export default {
 methods: {
 
 tvojeStanje_Omjer(){
-
+       if(this.solution_omjer==0 || this.status_omjer===""){
+            this.feedback1 = "Niste unijeli podatke"
+         }
+         else{
+           
       db.collection("tvojeStanje_Omjer").add({
         solution_omjer: this.solution_omjer,
         status_omjer: this.status_omjer,
       })
       .then((doc) => {
+        
         console.log("spremljeno", doc)
       })
       .catch((e) => {
         console.error(e)
       })
-
+      this.feedback1="Uspjesno spremljeno";
+         }
     },
 
 

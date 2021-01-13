@@ -32,6 +32,8 @@
           </b-form-group>
           
           <button @click.prevent="obrisi_masti(Masti.id); " class="btn btn-danger">Obriši</button>
+          <p class="mt-3 mb-1" style="color:red;">{{obrisano1}}</p>
+          
          </b-form>
       </b-card>
        <b-card
@@ -64,6 +66,7 @@
           <p class="mb-0 px-1 py-2">  <strong> &nbsp;{{Indeks.status_tjelesne_mase}}</strong> </p>
           </b-form-group>
             <button  @click.prevent="obrisi_indeks(Indeks.id)"  class="btn btn-danger">Obriši</button>
+            <p class="mt-3 mb-1" style="color:red;">{{obrisano2}}</p>
          </b-form>
       </b-card>
       <b-card
@@ -96,9 +99,15 @@
           <p class="mb-0 px-1 py-2">  <strong>  &nbsp;{{Omjer.status_omjer}}</strong> </p>
           
           </b-form-group>
-            <button  @click="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
+            <button  @click.prevent="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
+            <p class="mt-3 mb-1" style="color:red;">{{obrisano3}}</p>
+            
+            
          </b-form>
+         
       </b-card>
+
+      
    
     </div>  
     <br><br><br> 
@@ -121,6 +130,10 @@ data(){
     Masti: {},
     Indeks: {},
     Omjer: {},
+    obrisano1: '',
+    obrisano2: '',
+    obrisano3: '',
+
   }
 },
 
@@ -136,41 +149,61 @@ data(){
 
   methods: {
 
-    refreshPage(){
-    window.location.reload();
-},
+    
+
 
     
 
        obrisi_masti(id){
+
+         if(this.Masti.id==null){
+            this.obrisano1 = "Nista nije spremljeno"
+         }
+
+         else{
+
       db.collection('tvojeStanje').doc(this.Masti.id).get()
         .then((querySnapshot) =>{
           querySnapshot.ref.delete()
-
-          console.log("haahah")
+          this.obrisano1="Uspješno obrisano"
+          console.log("izbrisano")
+          
           .catch((e) => {
             console.error(e)
           })
 
         })
+         }
       },
 
       obrisi_indeks(id){
+        if(this.Indeks.id==null){
+            this.obrisano2 = "Nista nije spremljeno"
+         }
+         else{
       db.collection('tvojeStanje_Indeks').doc(this.Indeks.id).get()
         .then((querySnapshot) =>{
           querySnapshot.ref.delete()
-          console.log("ha")
+          this.obrisano2="Uspješno obrisano"
+          console.log("izbrisano")
 
         })
+         }
       },
 
       obrisi_omjer(id){
+        if(this.Omjer.id==null){
+            this.obrisano3 = "Nista nije spremljeno"
+         }
+         else{
       db.collection('tvojeStanje_Omjer').doc(this.Omjer.id).get()
         .then((querySnapshot) =>{
           querySnapshot.ref.delete()
-          console.log("ha")
+          this.obrisano3="Uspješno obrisano"
+          console.log("izbrisno")
 
         })
+         }
       },
 
 

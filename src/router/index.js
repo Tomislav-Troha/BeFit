@@ -17,36 +17,34 @@ Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'login',
       component: Login,
-      meta: { transition: 'fade-in-left' }
+      meta: { transition: 'fade-in-left' },
     },
 
     {
       path: '/login',
       name: 'Login',
       component: Login,
-      meta:{
-        logged:true
-      }
+      
     },
 
     {
       path: '/signup',
       name: 'Signup',
-      component: Signup
+      component: Signup,
+      
     },
 
     {
       path: '/home',
       name: 'Home',
       component: Home,
-      meta: {
-        needsUser: true,
-      },
+      
 
     },
 
@@ -54,7 +52,7 @@ const router = new Router({
       path: '/skola_prehrane',
       name: 'Skola_prehrane',
       component: Skola_prehrane,
-      meta: { transition: 'flip-x' }, 
+      meta: { transition: 'flip-x' }
 
     },
 
@@ -62,44 +60,44 @@ const router = new Router({
       path: '/onama',
       name: 'Onama',
       component: Onama,
-      meta: {
-        needsUser: true,
-      },
+      
+      
+      
     },
     {
       path: '/prehrambeni_status',
       name: 'Prehrambeni_status',
       component: Prehrambeni_status,
-      meta: {
-        needsUser: true,
-      },
+     
+      
     },
     {
       path: '/calorie',
       name: 'Calorie',
       component: Calorie,
-      meta: {
-        needsUser: true,
-      },
+      
     },
     {
       path: '/stanje',
       name: 'Stanje',
-      component: Stanje,meta: {
-        needsUser: true,
-      },
+      component: Stanje,
+     
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
+
   const noUser = store.currentUser === null;
+
   if (noUser && to.meta.needsUser) {
-    next('login');
+   
   }
+  
   else {
     next();
   }
+  
 })
 
 

@@ -149,11 +149,12 @@
 
           
           <p>
-            Udio masti iznosi: <strong>{{ solution.toFixed(1) }}</strong> %
+            Udio masti iznosi: <strong>{{ solution.toFixed(2) }}</strong> %
           </p>
           <p >
             Status: <strong>{{ status_masti }}</strong>
           </p>
+          <p style="color: red;">{{feedback}}</p>
           </b-form>
       </b-card>
     </div>
@@ -186,6 +187,7 @@ import Indeks from "./Pre_status_comp/Indeks.vue";
 import Omjer from "./Pre_status_comp/Omjer.vue";
 import {db} from '@/views/firebase';
 import store from "@/store";
+import { firebase } from "@/views/firebase";
 
 
 
@@ -199,6 +201,7 @@ export default {
       solution: 0,
       status_masti: "",
       email_M: "",
+      feedback:"",
       form: {
         spol: null,
         dob: "",
@@ -216,11 +219,23 @@ export default {
   
   
   methods: {
+    
     tvojeStanje(){
-       
-       db.collection("tvojeStanje").add({
+     
+      
+       if(this.solution==0 || this.status_masti===""){
+            this.feedback = "Niste unijeli podatke"
+         }
+         else{
+          
+       db.collection("tvojeStanje").add()({
+
         solution: this.solution,
         status_masti: this.status_masti,
+       
+       
+       
+         
       })
       .then((doc) => {
         console.log("spremljeno", doc)
@@ -228,7 +243,10 @@ export default {
       .catch((e) => {
         console.error(e)
       })
+       this.feedback="Uspjesno spremljeno";
 
+    }
+      
     },
 
     onSubmit(evt) {
@@ -236,7 +254,7 @@ export default {
       JSON.stringify(this.form);
 
       var solution = null;
-
+      
       if (this.form.spol === "Muško") {
         this.solution =
           495 /
