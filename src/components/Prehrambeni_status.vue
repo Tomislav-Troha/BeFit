@@ -200,8 +200,9 @@ export default {
     return {
       solution: 0,
       status_masti: "",
-      email_M: "",
+      email: "",
       feedback:"",
+      user: [],
       form: {
         spol: null,
         dob: "",
@@ -220,22 +221,16 @@ export default {
   
   methods: {
     
+    
     tvojeStanje(){
-     
-      
-       if(this.solution==0 || this.status_masti===""){
-            this.feedback = "Niste unijeli podatke"
-         }
-         else{
-          
-       db.collection("tvojeStanje").add()({
 
+
+      db.collection("korisnici").doc(this.id).collection("tvojeStanje").add({
         solution: this.solution,
         status_masti: this.status_masti,
-       
-       
-       
-         
+      })
+      .then(ref => {
+          console.log("Document written with ID: ", ref.id);
       })
       .then((doc) => {
         console.log("spremljeno", doc)
@@ -243,10 +238,7 @@ export default {
       .catch((e) => {
         console.error(e)
       })
-       this.feedback="Uspjesno spremljeno";
 
-    }
-      
     },
 
     onSubmit(evt) {

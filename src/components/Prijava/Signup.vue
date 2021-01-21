@@ -100,6 +100,7 @@
 
 <script>
 import { firebase } from "@/views/firebase";
+import {db} from '@/views/firebase';
 
 export default {
   name: "Signup",
@@ -112,6 +113,7 @@ export default {
       lozinka: "",
       feedback: "",
       slug: "",
+      id: "",
     };
   },
 
@@ -122,8 +124,18 @@ export default {
           .auth()
           .createUserWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
-            const userUid = user.uid;
+            let id = this.email
+   
+            db.collection("korisnici")
+            .doc(id)
+     
+            .set({
+                ime: this.ime,
+ 
+              })
+          .then(() => {
             this.$router.replace({name: 'Home'})
+          })
 })
           .catch((err) => {
             this.feedback = err.message;
