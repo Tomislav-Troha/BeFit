@@ -101,6 +101,7 @@
 <script>
 import { firebase } from "@/views/firebase";
 import {db} from '@/views/firebase';
+import store from "@/store";
 
 export default {
   name: "Signup",
@@ -124,13 +125,14 @@ export default {
           .auth()
           .createUserWithEmailAndPassword(this.email, this.lozinka)
           .then(() => {
-            let id = this.email
+             store.id = this.email
    
             db.collection("korisnici")
-            .doc(id)
+            .doc(store.id)
      
             .set({
                 ime: this.ime,
+
  
               })
           .then(() => {

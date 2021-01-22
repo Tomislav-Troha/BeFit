@@ -147,6 +147,16 @@
             >Spremi</b-button>
             </b-form>
 
+             <b-form  style="display:inline-block" @submit.prevent="updatetvojeStanje">
+            <b-button
+            class="ml-1"
+            type="sumbit"
+            variant="danger"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+            >Azuriraj</b-button>
+            </b-form>
+
           
           <p>
             Udio masti iznosi: <strong>{{ solution.toFixed(2) }}</strong> %
@@ -202,7 +212,7 @@ export default {
       status_masti: "",
       email: "",
       feedback:"",
-      user: [],
+      user: {},
       form: {
         spol: null,
         dob: "",
@@ -220,17 +230,44 @@ export default {
   
   
   methods: {
-    
-    
-    tvojeStanje(){
+
+  updatetvojeStanje(){
+    db.collection("korisnici").doc(store.id).collection("tvojeStanje").get()
+      .then((query) => {
+        this.user = {}
+        query.forEach((doc) => {
+          this.user = doc.data()
+          this.user.id = doc.id
 
 
-      db.collection("korisnici").doc(this.id).collection("tvojeStanje").add({
+        })
+      })
+      
+      db.collection("korisnici").doc(store.id).collection("tvojeStanje").doc(this.user.id)
+      
+      .update({
         solution: this.solution,
         status_masti: this.status_masti,
       })
+      
+    },
+
+
+
+    tvojeStanje(){
+   
+      db.collection("korisnici").doc(store.id).collection("tvojeStanje")
+      
+      .add({
+
+        solution: this.solution,
+        status_masti: this.status_masti,
+    
+      })
+
       .then(ref => {
-          console.log("Document written with ID: ", ref.id);
+        
+        console.log("Document written with ID: ", ref.id);
       })
       .then((doc) => {
         console.log("spremljeno", doc)
@@ -241,6 +278,7 @@ export default {
 
     },
 
+  
     onSubmit(evt) {
       evt.preventDefault();
       JSON.stringify(this.form);

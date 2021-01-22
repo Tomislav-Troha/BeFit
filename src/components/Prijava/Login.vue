@@ -75,6 +75,8 @@
 import { firebase } from "@/views/firebase";
 import slugify from "slugify";
 import router from "@/router"
+import store from "@/store";
+import {db} from '@/views/firebase';
 
 export default {
   name: "Login",
@@ -101,6 +103,13 @@ export default {
         firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.lozinka)
+          .then(() => {
+            store.id = this.email
+   
+            db.collection("korisnici")
+            .doc(store.id)
+  
+          })
           .then(() => {
               router.push({name: "Home"}) 
             

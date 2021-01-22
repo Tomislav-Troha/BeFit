@@ -18,6 +18,7 @@ import Footer from "./components/Layout/Footer";
 import store from "@/store";
 import { firebase } from "@/views/firebase";
 import router from "@/router"
+import {db} from '@/views/firebase';
 
 
 
@@ -31,6 +32,20 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     store.currentUser = user.email;
     console.log(user)
+
+    db.collection("korisnici")
+    .doc(user.email)
+    .get()
+    .then(doc => {
+    if (doc.exists) {
+    console.log("Document data:", doc.data());
+    this.id = doc.data().id;
+
+    } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    }
+    });
     
      
     // User is signed in.
