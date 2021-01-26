@@ -124,7 +124,7 @@ tvojeStanje_Omjer(){
          }
          else{
            
-      db.collection("tvojeStanje_Omjer").add({
+     db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Omjer").doc(store.currentUser ).set({
         solution_omjer: this.solution_omjer,
         status_omjer: this.status_omjer,
       })
@@ -138,6 +138,9 @@ tvojeStanje_Omjer(){
       this.feedback1="Uspjesno spremljeno";
          }
     },
+
+
+//----------------------------------------------------------------------------------------//
 
 
 onSubmit(evt) {

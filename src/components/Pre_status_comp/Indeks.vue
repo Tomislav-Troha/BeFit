@@ -119,7 +119,7 @@ tvojeStanje_Indeks(){
          }
       else{
         
-      db.collection("tvojeStanje_Indeks").add({
+      db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Indeks").doc(store.currentUser).set({
         solution_indeks: this.solution_indeks,
         status_tjelesne_mase: this.status_tjelesne_mase,
       })
@@ -133,6 +133,8 @@ tvojeStanje_Indeks(){
       }
     },
 
+
+//----------------------------------------------------------------------------------------//
 
 onSubmit(evt) {
       

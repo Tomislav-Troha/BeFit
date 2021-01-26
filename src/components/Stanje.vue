@@ -1,5 +1,5 @@
 <template>
- <div style="background-color:#CEFFD1" class="mx-3 mt-3"><br>
+ <div style="background-color:#CEFFD1" class="mx-3 mt-3 rounded-lg"><br>
  <div class="stanje  mx-5" >
       <b-card
         header="Udio masti u tijelu"
@@ -152,9 +152,9 @@ data(){
     
 
 
-    
+    //--------------------------BRISANJE MASTI----------------------------------------------//
 
-       obrisi_masti(id){
+       obrisi_masti(){
 
          if(this.Masti.id==null){
             this.obrisano1 = "Nista nije spremljeno"
@@ -162,96 +162,120 @@ data(){
 
          else{
 
-      db.collection('tvojeStanje').doc(this.Masti.id).get()
-        .then((querySnapshot) =>{
-          querySnapshot.ref.delete()
-          this.obrisano1="Uspješno obrisano"
-          console.log("izbrisano")
-          
-          .catch((e) => {
-            console.error(e)
-          })
+    db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje").doc(store.currentUser).delete().then(function() {
+    console.log("Document successfully deleted!");
+})
+    .catch(function(error) {
+    console.error("Error removing document: ", error);
+});
 
-        })
          }
       },
+
+
+
+      //--------------------------BRISANJE INDEKS----------------------------------------------//
 
       obrisi_indeks(id){
         if(this.Indeks.id==null){
             this.obrisano2 = "Nista nije spremljeno"
          }
          else{
-      db.collection('tvojeStanje_Indeks').doc(this.Indeks.id).get()
-        .then((querySnapshot) =>{
-          querySnapshot.ref.delete()
-          this.obrisano2="Uspješno obrisano"
-          console.log("izbrisano")
-
-        })
+     db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Indeks").doc(store.currentUser).delete().then(function() {
+    console.log("Document successfully deleted!");
+})
+    .catch(function(error) {
+    console.error("Error removing document: ", error);
+});
          }
       },
+
+
+
+      //---------------------------BRISANJE OMJER---------------------------------------------//
 
       obrisi_omjer(id){
         if(this.Omjer.id==null){
             this.obrisano3 = "Nista nije spremljeno"
          }
          else{
-      db.collection('tvojeStanje_Omjer').doc(this.Omjer.id).get()
-        .then((querySnapshot) =>{
-          querySnapshot.ref.delete()
-          this.obrisano3="Uspješno obrisano"
-          console.log("izbrisno")
-
-        })
+      db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Omjer").doc(store.currentUser).delete().then(function() {
+    console.log("Document successfully deleted!");
+})
+    .catch(function(error) {
+    console.error("Error removing document: ", error);
+});
          }
       },
 
 
 
+//------------------------------------------------------------------------//
+
     
     getTvojeStanje(){
-      db.collection("tvojeStanje").get()
-      .then((query) => {
-        this.Masti = {}
-        query.forEach((doc) => {
-          this.Masti = doc.data()
-          this.Masti.id = doc.id
-
-
-        })
-      })
+      db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje").doc(store.currentUser)
       
+        
+        .get()
+        .then(doc => {
+        if (doc.exists) {
+           console.log("Document data:", doc.data());
+           this.Masti = {}
+            this.Masti = doc.data()
+            this.Masti.id = doc.id
+
+
+
+        } else{
+          console.log("No such document!");
+        }
+      
+    
+        })
     },
+
+    //------------------------------------------------------------------------//
 
     getTvojeStanje_Indeks(){
     
-      db.collection("tvojeStanje_Indeks").get()
-      .then((query) => {
-        this.Indeks = {}
-        query.forEach((doc) => {
-          this.Indeks = doc.data()
-          this.Indeks.id = doc.id
+    db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Indeks").doc(store.currentUser).get()
+      .then(doc => {
+        if (doc.exists) {
+           console.log("Document data:", doc.data());
+           this.Indeks = {}
+            this.Indeks = doc.data()
+            this.Indeks.id = doc.id
 
-        })
+
+
+        } else{
+          console.log("No such document!");
+        }
       })
       
     },
 
+//------------------------------------------------------------------------//
 
        getTvojeStanje_Omjer(){
          
-      db.collection("tvojeStanje_Omjer").get()
-      .then((query) => {
-        this.Omjer = {}
-        query.forEach((doc) => {
-          this.Omjer = doc.data()
-          this.Omjer.id = doc.id
+      db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje_Omjer").doc(store.currentUser).get()
+      .then(doc => {
+        if (doc.exists) {
+           console.log("Document data:", doc.data());
+           this.Omjer = {}
+            this.Omjer = doc.data()
+            this.Omjer.id = doc.id
 
-        })
+
+
+        } else{
+          console.log("No such document!");
+        }
       })
-         
-    }
-  }
+       }
+    },
          
 }
 </script>

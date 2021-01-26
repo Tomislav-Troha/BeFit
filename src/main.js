@@ -8,7 +8,8 @@ import BackToTop from 'vue-backtotop'
 import Unicon from 'vue-unicons'
 import { uniArrowDown } from 'vue-unicons/src/icons'
 require("@fortawesome/fontawesome-free/css/all.min.css");
-import VuePageTransition from 'vue-page-transition'
+import VuePageTransition from 'vue-page-transition' 
+import { firebase } from "@/views/firebase";
 
 
 
@@ -33,12 +34,15 @@ Vue.use(VueScrollTo)
 
 Vue.config.productionTip = false;
 
+firebase.auth().onAuthStateChanged(function(user) {
+    
 new Vue({
     router,
     render: (h) => h(App),
     components : {App},
                 
 }).$mount('#app');
+});
 
 
 

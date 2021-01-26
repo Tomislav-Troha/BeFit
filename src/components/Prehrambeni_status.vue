@@ -147,16 +147,6 @@
             >Spremi</b-button>
             </b-form>
 
-             <b-form  style="display:inline-block" @submit.prevent="updatetvojeStanje">
-            <b-button
-            class="ml-1"
-            type="sumbit"
-            variant="danger"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-            >Azuriraj</b-button>
-            </b-form>
-
           
           <p>
             Udio masti iznosi: <strong>{{ solution.toFixed(2) }}</strong> %
@@ -231,34 +221,20 @@ export default {
   
   methods: {
 
-  updatetvojeStanje(){
-    db.collection("korisnici").doc(store.id).collection("tvojeStanje").get()
-      .then((query) => {
-        this.user = {}
-        query.forEach((doc) => {
-          this.user = doc.data()
-          this.user.id = doc.id
-
-
-        })
-      })
-      
-      db.collection("korisnici").doc(store.id).collection("tvojeStanje").doc(this.user.id)
-      
-      .update({
-        solution: this.solution,
-        status_masti: this.status_masti,
-      })
-      
-    },
-
 
 
     tvojeStanje(){
-   
-      db.collection("korisnici").doc(store.id).collection("tvojeStanje")
+
+      if(this.solution == 0 || this.status_masti === ""){
+            this.feedback = "Niste unijeli podatke"
+         }
+      else{
+
+
+      this.feedback = null
+      db.collection("korisnici").doc(store.currentUser).collection("tvojeStanje").doc(store.currentUser )
       
-      .add({
+      .set({
 
         solution: this.solution,
         status_masti: this.status_masti,
@@ -267,17 +243,21 @@ export default {
 
       .then(ref => {
         
-        console.log("Document written with ID: ", ref.id);
+        console.log("Document written with ID: ", store.currentUser );
       })
+
       .then((doc) => {
-        console.log("spremljeno", doc)
+        console.log("spremljeno")
       })
       .catch((e) => {
         console.error(e)
       })
-
+      this.feedback="Uspjesno spremljeno";
+      }
     },
 
+
+//----------------------------------------------------------------------------------------//
   
     onSubmit(evt) {
       evt.preventDefault();
