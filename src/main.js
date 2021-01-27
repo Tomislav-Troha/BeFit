@@ -10,11 +10,17 @@ import { uniArrowDown } from 'vue-unicons/src/icons'
 require("@fortawesome/fontawesome-free/css/all.min.css");
 import VuePageTransition from 'vue-page-transition' 
 import { firebase } from "@/views/firebase";
+import moment from 'moment'
+
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+})
 
 
 
-
- 
 Vue.use(VuePageTransition)
 
 

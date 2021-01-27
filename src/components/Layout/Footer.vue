@@ -3,7 +3,7 @@
     <footer class="tomo mx-3  ">
 
   
-  <div class="container-fluid mt-5">
+  <div class="container-fluid mt-5 rounded-lg">
 
     
 

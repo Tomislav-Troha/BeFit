@@ -113,7 +113,7 @@ export default {
       email: "",
       lozinka: "",
       feedback: "",
-      slug: "",
+      slika: "",
       id: "",
     };
   },
@@ -132,6 +132,12 @@ export default {
      
             .set({
                 ime: this.ime,
+                prezime: this.prezime,
+                datum: this.datum,
+                slika: this.slika
+
+
+
 
  
               })

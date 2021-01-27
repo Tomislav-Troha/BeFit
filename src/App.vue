@@ -8,7 +8,7 @@
     
     <Footer />
     
-    
+  
   </div>
 </template>
 
@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     .then(doc => {
     if (doc.exists) {
     console.log("Document data:", doc.data());
-    this.id = doc.data().id;
+    
 
     } else {
     // doc.data() will be undefined in this case

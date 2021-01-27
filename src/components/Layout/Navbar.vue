@@ -1,6 +1,6 @@
 <template>
 <div class="mx-3">
-  <b-navbar toggleable="lg" class="navbar">
+  <b-navbar toggleable="lg" class="navbar rounded-lg">
        <b-navbar-brand>
        <router-link :to="{ name: 'Home' }" class="navbar-brand">
             <img
@@ -29,11 +29,12 @@
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template #button-content>
-            <em style="font-size:25px;">Korisnik</em>
+            <em style="font-size:25px;">{{store.currentUser}}</em>
           </template>
-           <b-dropdown-item href="#" @click.prevent="stanje()" v-if="store.currentUser">{{store.currentUser}}</b-dropdown-item>
-          <b-dropdown-item href="#"  @click.prevent="odjava()" v-if="store.currentUser">Odjava</b-dropdown-item>
+          <b-dropdown-item href="#" @click.prevent="stanje()" v-if="store.currentUser">Tvoje stanje</b-dropdown-item>
           <b-dropdown-item href="#" @click.prevent="onama()" v-if="store.currentUser">O nama</b-dropdown-item>
+          <b-dropdown-item href="#"  @click.prevent="odjava()" v-if="store.currentUser">Odjava</b-dropdown-item>
+
         </b-nav-item-dropdown>
      </b-navbar-nav >
     </b-collapse>

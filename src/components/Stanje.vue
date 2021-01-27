@@ -1,11 +1,26 @@
 <template>
+
  <div style="background-color:#CEFFD1" class="mx-3 mt-3 rounded-lg"><br>
  <div class="stanje  mx-5" >
-      <b-card
-        header="Udio masti u tijelu"
-        class="text-left mx-auto mt-5"
-        style="background-color:#F8F8F8; max-width:900px; "
-      >
+
+<b-card style="max-width: 400px; border-radius: 20px; background-color: #e6e6e6;" class="text-center mx-auto mb-5"> 
+   <img id="profile-img" style="border-radius:100px" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+   <p style="font-size:30px;">{{Korisnik.ime.toUpperCase()}}</p>
+   <p style="font-size:30px;">{{Korisnik.prezime.toUpperCase()}}</p>
+   <p style="font-size:30px;">{{Korisnik.datum | formatDate}}</p>
+
+</b-card>
+
+
+
+   <b-card v-b-toggle.collapse-1 type="button"  class = "mx-auto text-center  header "
+    style="border-radius: 100px; background-color:#F8F8F8; max-width:400px; height:85px; color:black;" ><b-card-text style="justify-content: center;">Udio masti u tijelu</b-card-text>
+    </b-card>
+
+
+      <b-collapse id="collapse-1" class="mt-2">
+      <b-card class="mx-auto" style="background-color:#F8F8F8; max-width:900px; ">
+
         <b-form class="text-left">
           <b-form-group
             id="fieldset-horizontal"
@@ -31,15 +46,20 @@
           <p class="mb-0 px-1 py-2">  <strong>{{Masti.status_masti}} &nbsp;</strong> </p>
           </b-form-group>
           
-          <button @click.prevent="obrisi_masti(Masti.id); " class="btn btn-danger">Obriši</button>
+          <button @click="obrisi_masti(Masti.id); " class="btn btn-danger">Obriši</button>
           <p class="mt-3 mb-1" style="color:red;">{{obrisano1}}</p>
           
          </b-form>
+          
       </b-card>
-       <b-card
-        header="Indeks tjelesne mase "
-       class="text-left mx-auto mt-5"
-        style="background-color:#F8F8F8; max-width:900px; "
+
+        </b-collapse>
+
+
+<b-card v-b-toggle.collapse-2 type="button"  class = "mt-5 mx-auto text-center header" style="border-radius: 100px; background-color:#F8F8F8; max-width:400px; height:85px; color:black;"><b-card-text style="justify-content: center;">Indeks tjelesne mase</b-card-text></b-card>
+      <b-collapse id="collapse-2" class="mt-2">
+      <b-card class="mx-auto" style="background-color:#F8F8F8; max-width:900px; "
+        
       >
         <b-form class="text-left">
           <b-form-group
@@ -65,14 +85,22 @@
           >
           <p class="mb-0 px-1 py-2">  <strong> &nbsp;{{Indeks.status_tjelesne_mase}}</strong> </p>
           </b-form-group>
-            <button  @click.prevent="obrisi_indeks(Indeks.id)"  class="btn btn-danger">Obriši</button>
+            <button  @click="obrisi_indeks(Indeks.id)"  class="btn btn-danger">Obriši</button>
             <p class="mt-3 mb-1" style="color:red;">{{obrisano2}}</p>
          </b-form>
       </b-card>
-      <b-card
-        header="Omjer struka i bokova "
-        class="text-left mx-auto mt-5"
-        style="background-color:#F8F8F8; max-width:900px;"
+      </b-collapse>
+
+
+<b-card v-b-toggle.collapse-3 type="button"  class = "mt-5 mx-auto text-center  header" 
+style="border-radius: 100px; background-color:#F8F8F8; max-width:400px; height:85px; color:black;">
+<b-card-text style="justify-content: center;">Omjer struka i bokova</b-card-text>
+</b-card>
+
+ <b-collapse id="collapse-3" class="mt-2">
+
+      <b-card class="mx-auto" style="background-color:#F8F8F8; max-width:900px; "
+     
       >
         <b-form class="text-left">
           <b-form-group
@@ -99,15 +127,15 @@
           <p class="mb-0 px-1 py-2">  <strong>  &nbsp;{{Omjer.status_omjer}}</strong> </p>
           
           </b-form-group>
-            <button  @click.prevent="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
+            <button  @click="obrisi_omjer(Omjer.id)"  class="btn btn-danger">Obriši</button>
             <p class="mt-3 mb-1" style="color:red;">{{obrisano3}}</p>
             
             
          </b-form>
          
       </b-card>
-
-      
+      </b-collapse>
+ 
    
     </div>  
     <br><br><br> 
@@ -127,6 +155,7 @@ export default {
  
 data(){
   return{
+    Korisnik: {},
     Masti: {},
     Indeks: {},
     Omjer: {},
@@ -142,6 +171,7 @@ data(){
     this.getTvojeStanje();
     this.getTvojeStanje_Indeks();
     this.getTvojeStanje_Omjer();
+    this.getUser()
     
   },
 
@@ -209,6 +239,27 @@ data(){
       },
 
 
+//------------------------GET podaci korisnika------------------------------------------------//
+
+getUser(){
+  
+    db.collection("korisnici")
+    .doc(store.currentUser)
+    .get()
+    .then(doc => {
+    if (doc.exists) {
+    console.log("Document data:", doc.data());
+    this.Korisnik={}
+    this.Korisnik=doc.data()
+    
+    
+
+    } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    }
+    });
+},
 
 //------------------------------------------------------------------------//
 
@@ -288,9 +339,21 @@ data(){
   border-radius: 25px;
 
 }
-.card-header {
- 
+
+.header{
+  font-size: 30px;
+  outline: 0 !important;
+  
+  
+}
+
+.header:hover {
+  
+  outline: 0 !important;
+  background-color: black;
   font-size: 30px;
   font-weight: 500;
 }
+
+
 </style>
