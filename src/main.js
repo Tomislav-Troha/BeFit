@@ -11,6 +11,17 @@ require("@fortawesome/fontawesome-free/css/all.min.css");
 import VuePageTransition from 'vue-page-transition' 
 import { firebase } from "@/views/firebase";
 import moment from 'moment'
+import Croppa from 'vue-croppa';
+import 'vue-croppa/dist/vue-croppa.css';
+import icons from "v-svg-icons";
+
+
+
+
+
+Vue.component("icon", icons);
+
+Vue.use(Croppa);
 
 
 Vue.filter('formatDate', function(value) {

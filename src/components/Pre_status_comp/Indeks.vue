@@ -70,8 +70,8 @@
             data-target="#exampleModalCenter"
             >Spremi</b-button>
             </b-form>
-         <p>Indeks tjelesna mase iznosi: <strong>{{solution_indeks.toFixed(2) }}</strong></p>
-         <p>Status: <strong>{{status_tjelesne_mase}}</strong></p>
+         <p v-if="solution_indeks">Indeks tjelesna mase iznosi: <strong>{{solution_indeks.toFixed(2) }}</strong></p>
+         <p v-if="status_tjelesne_mase">Status: <strong>{{status_tjelesne_mase}}</strong></p>
          <p style="color: red;">{{feedback}}</p>
         </b-form>
       </b-card>

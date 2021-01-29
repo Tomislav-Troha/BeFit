@@ -88,8 +88,9 @@
             content-cols-sm
             content-cols-lg="2"
             v-model="kalorija1"
+            
           >
-           <strong>{{ solution1.toFixed(0) }}&nbsp;kCal </strong></b-form-group>
+           <strong v-if="solution1">{{ solution1.toFixed(0) }}&nbsp;kCal </strong></b-form-group>
           <b-form-group
             id="fieldset-horizontal"
             label="PROTEINA ="
@@ -99,7 +100,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-          <p>  <strong>{{ solution2.toFixed(0) }}&nbsp;g</strong> </p>
+          <p>  <strong v-if="solution2">{{ solution2.toFixed(0) }}&nbsp;g</strong> </p>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -110,7 +111,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution2.toFixed(0) }}&nbsp;g</strong>
+            <strong v-if="solution2">{{ solution2.toFixed(0) }}&nbsp;g</strong>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -121,7 +122,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution3.toFixed(0) }} &nbsp;g</strong>
+            <strong v-if="solution3">{{ solution3.toFixed(0) }} &nbsp;g</strong>
           </b-form-group>
         </b-form>
       </b-card>

@@ -4,10 +4,30 @@
  <div class="stanje  mx-5" >
 
 <b-card style="max-width: 400px; border-radius: 20px; background-color: #e6e6e6;" class="text-center mx-auto mb-5"> 
-   <img id="profile-img" style="border-radius:100px" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-   <p style="font-size:30px;">{{Korisnik.ime.toUpperCase()}}</p>
-   <p style="font-size:30px;">{{Korisnik.prezime.toUpperCase()}}</p>
+
+  <croppa v-if="!Slike.url" :width="200" :height="200" canvas-color="#c4c4c4" placeholder="Učitaj sliku" style="font-size:20px;" v-model="slika"></croppa>
+
+  <img v-if="Slike.url"  style="width:184px; height:184px;" v-bind:src="Slike.url" />
+ 
+ 
+<form  title="Uredi profil" type="button" @click="urediSliku()">
+  
+   <icon class="addMore" v-if="Slike.url" name="profile"/>
+  
+</form>
+ 
+
+  <div>
+   <button v-if="!Slike.url" @click="ucitajSliku();"  class="primary">Učitaj</button>
+   <p style="color:red;">{{feed}}</p>
+  </div>
+ 
+
+   <p style="font-size:30px; text-transform: uppercase;">{{Korisnik.ime}}</p>
+   <p style="font-size:30px; text-transform: uppercase;">{{Korisnik.prezime}}</p>
    <p style="font-size:30px;">{{Korisnik.datum | formatDate}}</p>
+
+   
 
 </b-card>
 
@@ -146,6 +166,7 @@ style="border-radius: 100px; background-color:#F8F8F8; max-width:400px; height:8
 import {db} from '@/views/firebase';
 import store from "@/store";
 import { firebase } from "@/views/firebase";
+import {storage} from "@/views/firebase";
 
 
 
@@ -159,9 +180,13 @@ data(){
     Masti: {},
     Indeks: {},
     Omjer: {},
+    Slike:{},
     obrisano1: '',
     obrisano2: '',
     obrisano3: '',
+    slika: null,
+    url: "",
+    feed: "",
 
   }
 },
@@ -172,6 +197,7 @@ data(){
     this.getTvojeStanje_Indeks();
     this.getTvojeStanje_Omjer();
     this.getUser()
+    this.getSlika()
     
   },
 
@@ -179,6 +205,91 @@ data(){
 
   methods: {
 
+    urediSliku(){
+      
+
+    db.collection("korisnici")
+    .doc(store.currentUser).collection("slikeProfila").doc(store.currentUser).delete().then(function() {
+    console.log("Document successfully deleted!");
+    location.reload()
+})
+    .catch(function(error) {
+    console.error("Error removing document: ", error);
+
+    
+         
+    })
+
+    },
+
+
+
+
+
+    getSlika(){
+
+      
+  
+    db.collection("korisnici")
+    .doc(store.currentUser).collection("slikeProfila").doc(store.currentUser)
+    .get()
+    .then(doc => {
+    if (doc.exists) {
+    console.log("Document data:", doc.data());
+    this.Slike={}
+    this.Slike=doc.data()
+    
+    
+
+    } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    }
+    });
+},
+    
+
+    ucitajSliku(){
+
+       
+
+    
+        this.slika.generateBlob((BlobData) => {
+          console.log(BlobData)
+           if(BlobData==null){
+            this.feed="Niste učitali sliku"
+
+        }else{
+
+          this.feed="Uspješno učitano, molimo pričekajte"
+
+        let imeSlike = 'slike/' + store.currentUser + '/' + Date.now() + '.png';
+
+        storage 
+          .ref(imeSlike)
+          .put(BlobData)
+          .then((result) => {
+            console.log(result)
+            result.ref.getDownloadURL().then((url) => {
+              console.log("Link", url)
+
+              db.collection("korisnici")
+            .doc(store.currentUser).collection("slikeProfila").doc(store.currentUser)
+     
+            .set({
+              url: url
+               
+
+            })
+            setTimeout(function () { location.reload(true); }, 2000);
+          })
+          
+      })
+      
+        }
+    })
+        
+    },
     
 
 
@@ -355,5 +466,31 @@ getUser(){
   font-weight: 500;
 }
 
+.profile{
+ position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 220px;
+        right:0;
+        top: 39%; /* Adjust this value to move the positioned div up and down */
+        text-align: center;
+        width: 30px;
+
+  }
+
+  .addMore{
+ 
+  border: none;
+  width: 32px;
+  height: 32px;
+  background-color: #eee;
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+}
+.addMore:hover{
+  
+  border: 1px solid rgba(196, 196, 196, 1);
+  background-color: rgba(196, 196, 196, 1);;
+}
 
 </style>

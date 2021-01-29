@@ -18,7 +18,7 @@
             content-cols-lg="2"
             
           >
-           <strong>{{solution4.toFixed(0)}}&nbsp;kCal </strong></b-form-group>
+           <strong v-if="solution4">{{solution4.toFixed(0)}}&nbsp;kCal </strong></b-form-group>
           <b-form-group
             id="fieldset-horizontal"
             label="PROTEINA ="
@@ -28,7 +28,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-          <p>  <strong>{{ solution5.toFixed(0) }}&nbsp;g</strong> </p>
+          <p>  <strong v-if="solution5">{{ solution5.toFixed(0) }}&nbsp;g</strong> </p>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -39,7 +39,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{ solution5.toFixed(0) }}&nbsp;g</strong>
+            <strong v-if="solution5">{{ solution5.toFixed(0) }}&nbsp;g</strong>
           </b-form-group>
           <b-form-group
             id="fieldset-horizontal"
@@ -50,7 +50,7 @@
             content-cols-sm
             content-cols-lg="2"
           >
-            <strong>{{solution6.toFixed(0)}} &nbsp;g</strong>
+            <strong v-if="solution6">{{solution6.toFixed(0)}} &nbsp;g</strong>
           </b-form-group>
         </b-form>
       </b-card>

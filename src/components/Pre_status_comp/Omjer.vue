@@ -75,8 +75,8 @@
             data-target="#exampleModalCenter"
             >Spremi</b-button>
             </b-form>
-         <p>Omjer struka i bokova iznosi: <strong>{{solution_omjer.toFixed(2) }}</strong></p>
-         <p >Status: <strong>{{status_omjer}}</strong></p>
+         <p v-if="solution_omjer">Omjer struka i bokova iznosi: <strong>{{solution_omjer.toFixed(2) }}</strong></p>
+         <p v-if="status_omjer" >Status: <strong>{{status_omjer}}</strong></p>
          <p style="color:red;">{{feedback1}}</p>
         </b-form>
       </b-card>

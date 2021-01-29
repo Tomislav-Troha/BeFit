@@ -148,10 +148,10 @@
             </b-form>
 
           
-          <p>
+          <p v-if="solution">
             Udio masti iznosi: <strong>{{ solution.toFixed(2) }}</strong> %
           </p>
-          <p >
+          <p v-if="status_masti" >
             Status: <strong>{{ status_masti }}</strong>
           </p>
           <p style="color: red;">{{feedback}}</p>
